@@ -7,19 +7,18 @@ What is the 10 001st prime number?
 '''
 
 def main():
-	prime_count = 0
-	num = 2
-	while prime_count < 10001:
-		if is_prime(num):
-			prime_count += 1
-		num += 1
-	return num - 1
-
-def is_prime(num):
-	for x in range(2,num)
-		if num % x == 0 :
-			return False
-	return True
+	primes = [2]
+	current_num = 2
+	while len(primes) <= 10001:
+		current_num += 1
+		x = 0
+		while x < len(primes):
+			if current_num % primes[x] == 0:
+				break
+			x += 1
+		if x == len(primes):
+			primes.append(current_num)
+	return primes[10000]
 
 if __name__ == '__main__':
 	print(main())
