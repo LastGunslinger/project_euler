@@ -31,10 +31,11 @@ def main():
 
 def sieve_of_Eratosthenes(limit):
 	primes = [x for x in range(2, limit)]
-	prime_flags = [None for x in range(2, limit)]
+	prime_flags = [None for x in primes]
 	
 	index = 0
-	while None in prime_flags:
+	while None in prime_flags and index < len(primes):
+		print(primes[index])
 		if prime_flags[index] is not None:
 			if is_prime(primes[index]):
 				prime_flags[index] = True
@@ -44,7 +45,7 @@ def sieve_of_Eratosthenes(limit):
 				prime_flags[index] = False
 		index += 1
 
-	print(primes)
+	print([x for x in primes if prime_flags[x]])
 
 def is_prime(num):
 	x = 2
