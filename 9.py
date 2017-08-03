@@ -9,9 +9,12 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 
 '''
+import time
 
 def main():
-	for a in range(1, 333):
+	a = 1
+	b = a + 1
+	while a < b:
 		b = a + 1
 		c = 1000 - a - b
 		while b < c :
@@ -21,6 +24,9 @@ def main():
 			else:
 				b += 1
 				c = 1000 - a - b
+		a += 1
 
 if __name__ == '__main__':
+	start = time.time()
 	print(main())
+	print('--- {} seconds ---'.format(time.time()-start))
