@@ -6,6 +6,7 @@ Find the sum of all the primes below two million.
 
 '''
 import time
+import math
 
 def main():
 	limit = 2000000
@@ -19,7 +20,7 @@ def sieve_of_Reggie(limit):
 
 	x = 1
 	while x < len(primes):
-		if isPrime(primes[x]):
+		if isPrime(primes[x], primes):
 			prime_number = primes[x]
 			print(prime_number)
 			index = x + 1
@@ -32,10 +33,10 @@ def sieve_of_Reggie(limit):
 		x += 1
 	return sum(primes)
 
-def isPrime(number):
-	x = 2
-	while x < number/2:
-		if number % x == 0:
+def isPrime(number, primes):
+	x = 0
+	while primes[x] < math.sqrt(number):
+		if number % primes[x] == 0:
 			return False
 		x += 1
 	return True
