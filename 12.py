@@ -20,10 +20,34 @@ What is the value of the first triangle number to have over five hundred divisor
 
 '''
 import time
+import math
 
 def main():
+	start = 7
+	divisors = []
+	while len(divisors) < 500 :
+		tri = triangle(start)
+		divisors = factors(tri)
+		print(f'{tri} has {len(divisors)} divisors')
+		start += 1
+	print(divisors)
+	return tri
 
+def triangle(num):
+	result = 0
+	for x in range(1, num):
+		result += x
 	return result
+
+def factors(num):
+	results = [1, num]
+	if num <= 3:
+		return results
+	for x in range(2, int(math.sqrt(num) + 1)):
+		if num % x == 0:
+			results.append(x)
+			results.append(int(num/x))
+	return sorted(results)
 
 if __name__ == '__main__':
 	start = time.time()

@@ -1,10 +1,13 @@
 '''
 '''
 import time
+import pytest
 
 def main():
+	return
 
-	return result
+def test_main():
+	pass
 
 if __name__ == '__main__':
 	start = time.time()
