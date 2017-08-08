@@ -58,19 +58,21 @@ def main():
 	return max_sum(triangle)
 
 def max_sum(triangle):
-	last_index = 0
-	triangle_sum = triangle[0][0]
-	for row in range(1, len(triangle)):
-		left_branch = triangle[row][last_index]
-		right_branch = triangle[row][last_index + 1]
-		if left_branch > right_branch:
-			triangle_sum += left_branch
-			print(left_branch)
-		else:
-			triangle_sum += right_branch
-			last_index += 1
-			print(right_branch)
-	return triangle_sum
+	
+	for index in range(len(triangle) -2, -1, -1):
+		for col in range(0, len(triangle[index])):
+			left_branch = triangle[index + 1][col]
+			right_branch = triangle[index + 1][col + 1]
+			if left_branch >= right_branch:
+				triangle[index][col] += left_branch
+			else:
+				triangle[index][col] += right_branch
+			#triangle[index][col] += triangle[index + 1][col] if triangle[index + 1][col] > triangle[index + 1][col + 1] else triangle[index + 1][col + 1]
+		print(triangle[-2])
+		triangle.pop()
+
+	return triangle[0][0]
+
 
 def gen_triangle(data):
 	triangle = []
@@ -78,20 +80,18 @@ def gen_triangle(data):
 	row_len = 1
 	while start + row_len < len(data) + 1:
 		triangle.append(data[start:start + row_len])
-		print(data[start:start + row_len])
 		start += row_len
 		row_len += 1
 	
+	for row in triangle:
+		print(row)
+
 	return triangle
 
 def test_max_triangle_sum():
-	test_data = [
-		[3],
-		[7, 4],
-		[2, 4, 6],
-		[8, 5, 9, 3]
-	]
-	assert max_triangle_sum(test_data) == 23
+	test_data = [ 3, 7 , 4, 2, 4, 6, 8, 5, 9, 3 ]
+	test_data = gen_triangle(test_data)
+	assert max_sum(test_data) == 23
 
 if __name__ == '__main__':
 	start = time.time()
