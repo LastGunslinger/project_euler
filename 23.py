@@ -21,27 +21,53 @@ def is_abundant(num):
 			divisors.append(int(num/x))
 	return sum(divisors) > num
 
-def find_all_abundant(limit):
+def find_abundant_nums(limit):
 	abundant_nums = []
-	for x in range(2, limit + 1):
+	for x in range(12, limit + 1):
 		if is_abundant(x):
 			abundant_nums.append(x)
 	return abundant_nums
 
+def remove_abundant_sums(abundant_nums, limit):
+	all_nums = [x for x in range(1, limit + 1)]
+	lower_bound = 0
+	for num in all_nums:
+		for abnum in [x for x in abundant_nums if x < num]:
+			if num - abnum in abundant_nums:
+				print(f'{num} removed')
+				all_nums.remove(num)
+				break
+				# all_nums[all_nums.index(num)] = None
+	return all_nums
+
+
+	while abundant_nums[i] <= limit/2:
+		x = i + 1
+		while abundant_nums[i] + abundant_nums[x] <= limit:
+			if abundant_nums[i] + abundant_nums[x] in all_nums:
+				all_nums.remove(abundant_nums[i] + abundant_nums[x])
+				print(len(all_nums))
+			elif 2*abundant_nums[i] in all_nums:
+				all_nums.remove(2*abundant_nums[i])
+				print(len(all_nums))
+			x += 1
+		i += 1
+	return all_nums
+
 def main():
 	limit = 28123
-	abundant_nums = find_all_abundant(limit)
-	num_range = [x for x in range(1, limit + 1)]
-	for abundant in abundant_nums:
-		for other in abundant_nums:
-			if abundant + other in num_range:
-				num_range.remove(abundant + other)
-	print(num_range)
-	return sum(num_range)
+	data = find_abundant_nums(limit)
+	result = remove_abundant_sums(data, limit)
+	print(result)
+	return sum(result)
 
 def test_main():
+	limit = 50
 	assert is_abundant(28) == False
-	print(find_all_abundant(50))
+	test_abnums = find_abundant_nums(limit)
+	print(test_abnums)
+	test_non_abnums = remove_abundant_sums(test_abnums, limit)
+	print(test_non_abnums)
 
 if __name__ == '__main__':
 	start = time.time()

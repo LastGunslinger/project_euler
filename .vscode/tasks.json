@@ -1,0 +1,63 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"type": "shell",
+	"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "dedicated"
+			},
+	"windows": {
+		"command": "cmd"
+	},
+	"osx": {
+		"command": "bash"
+	},
+	"args": [
+		"-c"
+	],
+	"tasks": [
+		{
+			"taskName": "Run_Main",
+			"suppressTaskName": true,
+			"windows": {
+				"command": "workon ${workspaceRootFolderName} && python ${file}"
+			},
+			"problemMatcher": []
+		},
+		{
+			"taskName": "Build",
+			"suppressTaskName": true,
+			"windows": {
+				"command": "workon ${workspaceRootFolderName} && python build.py"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"taskName": "Deploy",
+			"suppressTaskName": true,
+			"windows": {
+				"command": "workon ${workspaceRootFolderName} && python deploy.py"
+			},
+			"problemMatcher": []
+		},
+		{
+			"taskName": "Test",
+			"suppressTaskName": true,
+			"windows": {
+				"command": "workon ${workspaceRootFolderName} && pytest -s ${file}"
+			},
+			"problemMatcher": [],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		}
+	]
+}
