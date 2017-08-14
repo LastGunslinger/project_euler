@@ -14,60 +14,37 @@ import pytest
 import math
 
 def is_abundant(num):
-	divisors = [1]
-	for x in range(2, math.ceil(math.sqrt(num))):
-		if num % x == 0:
-			divisors.append(x)
-			divisors.append(int(num/x))
+	divisors = {x for x in range(1, num) if num % x == 0}
 	return sum(divisors) > num
 
 def find_abundant_nums(limit):
-	abundant_nums = []
-	for x in range(12, limit + 1):
-		if is_abundant(x):
-			abundant_nums.append(x)
-	return abundant_nums
+	return {x for x in range(12, limit + 1) if is_abundant(x)}
 
-def remove_abundant_sums(abundant_nums, limit):
-	all_nums = [x for x in range(1, limit + 1)]
-	lower_bound = 0
-	for num in all_nums:
-		for abnum in [x for x in abundant_nums if x < num]:
-			if num - abnum in abundant_nums:
-				print(f'{num} removed')
-				all_nums.remove(num)
-				break
-				# all_nums[all_nums.index(num)] = None
-	return all_nums
+def sums_of_abundants(abundant_nums, limit):
+	return {x + y for x in abundant_nums for y in abundant_nums if x <= y and x + y <= limit}
 
-
-	while abundant_nums[i] <= limit/2:
-		x = i + 1
-		while abundant_nums[i] + abundant_nums[x] <= limit:
-			if abundant_nums[i] + abundant_nums[x] in all_nums:
-				all_nums.remove(abundant_nums[i] + abundant_nums[x])
-				print(len(all_nums))
-			elif 2*abundant_nums[i] in all_nums:
-				all_nums.remove(2*abundant_nums[i])
-				print(len(all_nums))
-			x += 1
-		i += 1
-	return all_nums
+def remove_abundant_sums(abundant_sums, limit):
+	return [x for x in range(1, limit + 1) if x not in abundant_sums]
 
 def main():
 	limit = 28123
-	data = find_abundant_nums(limit)
-	result = remove_abundant_sums(data, limit)
+	abnums = find_abundant_nums(math.ceil(limit))
+	abnum_sums = sums_of_abundants(abnums, limit)
+	result = remove_abundant_sums(abnum_sums, limit)
 	print(result)
 	return sum(result)
 
 def test_main():
-	limit = 50
+	limit = 120
 	assert is_abundant(28) == False
 	test_abnums = find_abundant_nums(limit)
-	print(test_abnums)
-	test_non_abnums = remove_abundant_sums(test_abnums, limit)
-	print(test_non_abnums)
+	assert test_abnums == {12, 18, 20, 24, 30, 36, 40, 42, 48, 54, 56, 60, 66, 70, 72, 78, 80, 84, 88, 90, 96, 100, 102, 104, 108, 112, 114, 120}
+	test_sums = sums_of_abundants(test_abnums, limit)
+	assert len(test_sums) == len({x + y for x in test_abnums for y in test_abnums if x <= y and x + y <= 120})
+	assert test_sums == {x + y for x in test_abnums for y in test_abnums if x <= y and x + y <= 120}
+	# print(test_sums)
+	# test_non_abnums = remove_abundant_sums(test_sums, limit)
+	# print(f'{test_non_abnums} - {len(test_non_abnums)}')
 
 if __name__ == '__main__':
 	start = time.time()

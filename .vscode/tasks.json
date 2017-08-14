@@ -51,7 +51,7 @@
 			"taskName": "Test",
 			"suppressTaskName": true,
 			"windows": {
-				"command": "workon ${workspaceRootFolderName} && pytest -s ${file}"
+				"command": "workon ${workspaceRootFolderName} && pytest -s -vv ${file}"
 			},
 			"problemMatcher": [],
 			"group": {
