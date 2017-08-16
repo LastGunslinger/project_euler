@@ -1,7 +1,7 @@
 {
 	// See https://go.microsoft.com/fwlink/?LinkId=733558
 	// for the documentation about the tasks.json format
-	"version": "2.0.0",
+	"version": "0.1.0",
 	"type": "shell",
 	"presentation": {
 				"echo": true,
@@ -13,7 +13,7 @@
 		"command": "cmd"
 	},
 	"osx": {
-		"command": "bash"
+		"command": "/bin/bash"
 	},
 	"args": [
 		"-c"
@@ -22,9 +22,7 @@
 		{
 			"taskName": "Run_Main",
 			"suppressTaskName": true,
-			"windows": {
-				"command": "workon ${workspaceRootFolderName} && python ${file}"
-			},
+			"args": ["workon ${workspaceRootFolderName} && python ${file}"],
 			"problemMatcher": []
 		},
 		{
