@@ -14,6 +14,14 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 import time
 import pytest
 
+def create_matrix(rows, columns):
+	return [ [0 for _ in range(columns)] for _ in range(rows) ]
+
+def test_create_matrix():
+	matrix = create_matrix(10, 10)
+	for row in matrix:
+		print(row)
+
 def main():
 	return
 
