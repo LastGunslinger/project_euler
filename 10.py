@@ -7,10 +7,13 @@ Find the sum of all the primes below two million.
 '''
 import time
 import math
+from primes import PrimeIterator
 
-def main():
-	limit = 2000000
+def main(limit):
+	return sum([x for x in PrimeIterator(limit)])
+	return prime_sum
 	return sieve_of_Reggie(limit)
+
 
 	# return sieve_of_Eratosthenes(limit)
 
@@ -42,5 +45,5 @@ def isPrime(number, primes):
 
 if __name__ == '__main__':
 	start = time.time()
-	print(main())
+	print(main(2000000))
 	print('--- {} seconds ---'.format(time.time()-start))

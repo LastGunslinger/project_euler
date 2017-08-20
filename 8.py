@@ -28,8 +28,10 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 '''
 
 import re
+import time
+from functools import reduce
 
-def main():
+def main(size):
 	raw_num = '''
 	73167176531330624919225119674426574742355349194934
 	96983520312774506326239578318016984801869478851843
@@ -53,22 +55,15 @@ def main():
 	71636269561882670428252483600823257530420752963450
 	'''
 	raw_num = re.sub(r'\s+','',raw_num)
-	large_num = [int(x) for x in raw_num]
-	products = []
-	
-	x = 0
-	while x < len(large_num) - 13:
-		print(large_num[x:x+13])
-		if 0 not in large_num[x:x+13]:
-			temp = 1
-			for val in large_num[x:x+13]:
-				temp *= val
-			products.append(temp)
-		else :
-			x = large_num[x:x+13].index(0) + x
-		x += 1
 
-	return 0 if len(products) == 0 else max(products)
+	largest_product = 0
+	for index in range(len(raw_num) - size):
+		product = reduce(lambda x, y: x * y, [int(x) for x in raw_num[index:index+size]])
+		if product > largest_product:
+			largest_product = product
+	return largest_product
 
 if __name__ == '__main__':
+	start = time.time()
 	print(main())
+	print('--- {} seconds ---'.format(time.time()-start))

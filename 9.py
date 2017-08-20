@@ -19,7 +19,7 @@ def main():
 		c = 1000 - a - b
 		while b < c :
 			if a*a + b*b == c*c:
-				print(a, b, c)
+				print(f'{a}^2 * {b}^2 = {c}^2 = {c**2}')
 				return a*b*c
 			else:
 				b += 1
