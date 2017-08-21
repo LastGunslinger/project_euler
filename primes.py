@@ -14,17 +14,16 @@ class PrimeIterator:
 	def __next__(self):
 		while True:
 			self._count += 1
-			is_prime = True
 			if self.sentinel and self._count >= self.sentinel:
 				raise StopIteration
 			for prime in [x for x in self.prime_list if x < math.sqrt(self._count) + 1]:
 				if self._count % prime == 0:
-					is_prime = False
 					break
-			if is_prime:
+			else:
 				self.prime_list.append(self._count)
 				print(self._count)
 				return self._count
+
 
 def is_prime(number):
 	if number < 2:
