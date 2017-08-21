@@ -1,4 +1,5 @@
 from itertools import count
+import math
 
 class PrimeIterator:
 	def __init__(self, sentinel=None):
@@ -15,7 +16,7 @@ class PrimeIterator:
 			is_prime = True
 			if self.sentinel and self._count >= self.sentinel:
 				raise StopIteration
-			for prime in self.prime_list:
+			for prime in [x for x in self.prime_list if x < math.sqrt(self._count) + 1]:
 				if self._count % prime == 0:
 					is_prime = False
 					break
