@@ -11,5 +11,5 @@ def test_main():
 
 if __name__ == '__main__':
 	start = time.time()
-	print(main())
+	print(f'Result: {main()}')
 	print('--- {} seconds ---'.format(time.time()-start))

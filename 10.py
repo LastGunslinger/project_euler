@@ -7,13 +7,16 @@ Find the sum of all the primes below two million.
 '''
 import time
 import math
-from primes import PrimeIterator
+import primes
 
 def main(limit):
-	return sum([x for x in PrimeIterator(limit)])
+	return sum(x for x in range(limit) if primes.is_prime(x))
+	return sum([x for x in primes.PrimeIterator(limit)])
 	return prime_sum
 	return sieve_of_Reggie(limit)
 
+def test_main():
+	assert main(10) == 17
 
 	# return sieve_of_Eratosthenes(limit)
 
