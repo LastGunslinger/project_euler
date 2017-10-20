@@ -1,4 +1,4 @@
-from itertools import count
+import itertools
 import math
 import pytest
 
@@ -24,6 +24,24 @@ class PrimeIterator:
 				print(self._count)
 				return self._count
 
+def gen_primes():
+	yield 2
+	yield 3
+	primes = [2, 3]
+	for num in itertools.count(start=5, step=2):
+		for prime in filter(lambda x: x < math.sqrt(num) + 1, primes):
+			if num % prime == 0:
+				break
+		else:
+			primes.append(num)
+			yield num
+
+def test_gen_primes():
+	for x in gen_primes():
+		print(x)
+		if x > 50:
+			break
+
 
 def is_prime(number):
 	if number < 2:
@@ -41,6 +59,7 @@ def is_prime(number):
     (25, False),
     (101, False),
 ])
+
 def test_is_prime(test_input, expected):
 	is_prime(test_input)
 			
