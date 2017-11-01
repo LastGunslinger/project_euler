@@ -11,19 +11,24 @@ import time
 import pytest
 
 def main(target_value):
-	coin_values = { 2.0, 1.0, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01 }
+	coin_values = [ 1, 2, 5, 10, 20, 50, 100, 200 ]
 	coin_amounts = [0] * len(coin_values)
-	combinations = []
 
-	for coin in coin_values:
-		
+	return count_combinations(coin_values, int(len(coin_values)/coin_values[0]), target_value)
 
-	return
+def count_combinations(coin_values, index, total):
+	if total == 0:
+		return 1
+	if total < 0:
+		return 0
+	if index <= 0 and total >= 1:
+		return 0
+	return count_combinations(coin_values, index - 1, total) + count_combinations(coin_values, index, total - coin_values[index - 1])
 
 def test_main():
 	pass
 
 if __name__ == '__main__':
 	start = time.time()
-	print(f'Result: {main()}')
+	print(f'Result: {main(200)}')
 	print('--- {} seconds ---'.format(time.time()-start))
