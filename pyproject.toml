@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "project_euler"
+version = "1.0.0"
+description = "Examples for project Euler activities"
+authors = ["Reginald Johnson <reginald.johnson@cpa.texas.gov>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "~3.6.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.5"
+flake8 = "^3.5"
+autopep8 = "^1.3"

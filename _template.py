@@ -3,13 +3,16 @@
 import time
 import pytest
 
+
 def main():
-	return
+    return
+
 
 def test_main():
-	pass
+    pass
+
 
 if __name__ == '__main__':
-	start = time.time()
-	print(f'Result: {main()}')
-	print('--- {} seconds ---'.format(time.time()-start))
+    start = time.time()
+    print(f'Result: {main()}')
+    print('--- {} seconds ---'.format(time.time() - start))

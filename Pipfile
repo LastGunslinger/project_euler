@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+astroid = "*"
+colorama = "*"
+isort = "*"
+lazy-object-proxy = "*"
+mccabe = "*"
+pbr = "*"
+py = "*"
+six = "*"
+stevedore = "*"
+virtualenv = "*"
+virtualenv-clone = "*"
+virtualenvwrapper-win = "*"
+wrapt = "*"
+
+[dev-packages]
+"flake8" = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.6"
