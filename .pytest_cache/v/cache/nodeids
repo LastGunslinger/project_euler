@@ -1,1 +1,3 @@
-[]
+[
+  "test/test_pu37.py::test_truncatable_prime"
+]
