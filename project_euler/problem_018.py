@@ -34,7 +34,7 @@ import time
 import re
 import pytest
 
-def main():
+def solve():
 	data = '''
 		75
 		95 64

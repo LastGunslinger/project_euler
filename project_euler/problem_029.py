@@ -19,7 +19,7 @@ def gen_terms(a_limits, b_limits):
 		for b in range(b_limits[0], b_limits[1] + 1):
 			yield a**b
 
-def main(a_limits, b_limits):
+def solve(a_limits, b_limits):
 	combinations = {x for x in gen_terms(a_limits, b_limits)}
 	print(combinations)
 	return len(combinations)

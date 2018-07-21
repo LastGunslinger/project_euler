@@ -26,7 +26,7 @@ def get_name_value(name):
 		value += ord(letter) - 64
 	return value
 
-def main():
+def solve():
 	total = 0
 	sorted_names = sort_names()
 	for i in range(0, len(sorted_names)):

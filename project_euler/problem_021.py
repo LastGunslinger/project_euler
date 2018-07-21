@@ -20,7 +20,7 @@ def sum_divisors(num):
 			divisors.append(int(num/x))
 	return sum(divisors)
 
-def main():
+def solve():
 	amicables = find_amicables(10000)
 	return sum([x for (x, y) in amicables])
 

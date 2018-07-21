@@ -25,7 +25,7 @@ def test_is_prime():
 	assert is_prime(18) == False
 	assert is_prime(27) == False
 
-def main(a_limit, b_limit):
+def solve(a_limit, b_limit):
 	prime_count = 0
 	coeffs = (None, None)
 	for a in range(-a_limit + 1, a_limit):

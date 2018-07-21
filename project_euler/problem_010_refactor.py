@@ -9,7 +9,7 @@ import time
 import math
 # import primes
 
-def main(limit):
+def solve(limit):
 	return sum(x for x in range(limit) if primes.is_prime(x))
 
 def test_main():

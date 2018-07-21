@@ -47,7 +47,7 @@ def concatenate_products(number: int) -> int:
     return int(concatenated_product)
 
 
-def main():
+def solve():
     result = []
     for x in range(555555555):
         product = concatenate_products(x)

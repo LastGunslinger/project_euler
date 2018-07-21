@@ -8,7 +8,7 @@ What is the sum of the digits of the number 2^1000?
 import time
 import math
 
-def main():
+def solve():
 	power = str(int(math.pow(2, 1000)))
 	print(power)
 	result = 0

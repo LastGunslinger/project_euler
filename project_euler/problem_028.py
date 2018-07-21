@@ -83,7 +83,7 @@ def test_sum_diagonals():
 	matrix = paint_box(matrix)
 	print(sum_diagonals(matrix))
 
-def main(size):
+def solve(size):
 	mtx = Matrix(size, size)
 	mtx = paint_box(mtx)
 	return sum_diagonals(mtx)

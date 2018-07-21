@@ -9,7 +9,7 @@ from itertools import count
 from .utilities import primes
 import time
 
-def main(limit):
+def solve(limit):
 	for index, prime in enumerate(PrimeIterator()):
 		print(f'{index:05}: {prime}')
 		if index == limit - 1:

@@ -18,7 +18,7 @@ import time
 import re
 import pytest
 
-def main():
+def solve():
 
 	triangle = gen_triangle()
 	return max_sum(triangle)

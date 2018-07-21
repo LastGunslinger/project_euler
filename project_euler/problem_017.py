@@ -10,7 +10,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 import time
 import re
 
-def main():
+def solve():
 	longform = {
 		'0': '',
 		'00': '',

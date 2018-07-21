@@ -24,7 +24,7 @@ def largest_digit(number: int) -> int:
     return max(digits)
 
 
-def main():
+def solve():
     lower_limit = 3
     upper_limit = factorial(9)  # No number can be higher than 9!
 

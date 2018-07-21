@@ -10,7 +10,7 @@ How many different ways can £2 be made using any number of coins?
 import time
 import pytest
 
-def main(target_value):
+def solve(target_value):
 	coin_values = [ 1, 2, 5, 10, 20, 50, 100, 200 ]
 	coin_amounts = [0] * len(coin_values)
 

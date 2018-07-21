@@ -4,7 +4,7 @@ import time
 import pytest
 
 
-def main():
+def solve():
     return
 
 

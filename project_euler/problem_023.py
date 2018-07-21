@@ -26,7 +26,7 @@ def sums_of_abundants(abundant_nums, limit):
 def remove_abundant_sums(abundant_sums, limit):
 	return [x for x in range(1, limit + 1) if x not in abundant_sums]
 
-def main():
+def solve():
 	limit = 28123
 	abnums = find_abundant_nums(math.ceil(limit))
 	abnum_sums = sums_of_abundants(abnums, limit)

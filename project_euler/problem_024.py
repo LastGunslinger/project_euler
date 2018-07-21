@@ -8,7 +8,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 import time
 import pytest
 
-def main(permutation, count):
+def solve(permutation, count):
 	permutation_count = 1
 	while permutation_count < count :
 		permutation = next_permutation(permutation)

@@ -17,7 +17,7 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 '''
 import time
 
-def main():
+def solve():
 	longest_chain = (2, 2)
 	for start in range(2, 1000000):
 		chain_len = len(get_chain(start))

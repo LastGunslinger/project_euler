@@ -8,7 +8,7 @@ How many such routes are there through a 20×20 grid?
 import time
 import math
 
-def main():
+def solve():
 	lattice = (20 + 20, 20)
 
 	return combination(*lattice)

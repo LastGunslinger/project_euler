@@ -70,7 +70,7 @@ def long_divide(dividend, divisor):
 			return quotient, len(match.group(1))
 	return quotient, 0
 
-def main(limit):
+def solve(limit):
 	longest_recurring = 7
 	recurring_length = 6
 	for x in range(1, limit):

@@ -45,7 +45,7 @@ def is_pandigital(num_1: int, num_2: int) -> bool:
             return True
 
 
-def main():
+def solve():
     # Mathematically, only a 2-digit * 3-digit number can be pandigital.
     # This reduces the range of numbers I need to look for.
     

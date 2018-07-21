@@ -11,7 +11,7 @@ Find the sum of the digits in the number 100!
 import time
 import pytest
 
-def main():
+def solve():
 	return sum_digits( factorial(100) )
 
 def factorial(num):

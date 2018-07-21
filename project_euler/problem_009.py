@@ -11,7 +11,7 @@ Find the product abc.
 '''
 import time
 
-def main():
+def solve():
 	a = 1
 	b = a + 1
 	while a < b:

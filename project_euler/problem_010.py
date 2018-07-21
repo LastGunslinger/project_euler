@@ -9,7 +9,7 @@ import time
 import math
 from . import utilities
 
-def main(limit):
+def solve(limit):
 	return sum(x for x in range(limit) if primes.is_prime(x))
 	return sum([x for x in primes.PrimeIterator(limit)])
 	return prime_sum

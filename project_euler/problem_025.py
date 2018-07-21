@@ -23,7 +23,7 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 import time
 import pytest
 
-def main(digit_limit):
+def solve(digit_limit):
 	fm, fn = 1, 1
 	fib_index = 2
 	fib_number = 2

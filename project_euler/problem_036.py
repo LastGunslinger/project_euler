@@ -26,7 +26,7 @@ def generate_palindromes(start: int=1, stop: int=1000000):
             yield number
 
 
-def main():
+def solve():
     result = set()
     for palindrome in generate_palindromes():
         result.add(palindrome)

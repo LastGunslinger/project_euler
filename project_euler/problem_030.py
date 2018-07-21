@@ -26,7 +26,7 @@ def test_gen_powers():
 	assert test_data == [1634, 8208, 9474]
 	assert sum(test_data) == 19316
 
-def main(power):
+def solve(power):
 	return sum([x for x in gen_powers(power)])
 
 def test_main():

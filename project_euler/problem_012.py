@@ -22,7 +22,7 @@ What is the value of the first triangle number to have over five hundred divisor
 import time
 import math
 
-def main():
+def solve():
 	start = 7
 	divisors = []
 	while len(divisors) < 500 :

@@ -24,7 +24,7 @@ def rotations(number: int) -> Set[int]:
             yield int(num_str[index:] + num_str[:index])
 
 
-def main():
+def solve():
     # Prefill set with known circular primes
     result = {2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97}
     for prime in primes(max(result) + 1, 1000000):

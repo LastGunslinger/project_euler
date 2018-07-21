@@ -17,7 +17,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 import time
 import pytest
 
-def main():
+def solve():
 	months = {
 		'01-January': 31,
 		'02-February': None,
