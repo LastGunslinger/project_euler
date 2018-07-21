@@ -7,7 +7,7 @@ Note: 2, 3, 5, and 7 are not considered to be truncatable primes.
 '''
 
 import time
-from primes import gen_primes, is_prime
+from .utilities import primes, is_prime
 from termcolor import colored
 
 
@@ -37,7 +37,7 @@ def truncatable_prime(number: int):
 
 def main():
     result = set()
-    for prime in gen_primes(11):  # Start generating primes at 11 due to problem restrictions
+    for prime in primes(11):  # Start generating primes at 11 due to problem restrictions
         if truncatable_prime(prime):
             print(f'Truncatable prime: {prime}')
             result.add(prime)

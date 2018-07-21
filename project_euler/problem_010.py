@@ -7,7 +7,7 @@ Find the sum of all the primes below two million.
 '''
 import time
 import math
-import primes
+from . import utilities
 
 def main(limit):
 	return sum(x for x in range(limit) if primes.is_prime(x))

@@ -11,7 +11,7 @@ import time
 from termcolor import colored
 
 import itertools
-from .primes import gen_primes, is_prime
+from .utilities import primes, is_prime
 from typing import Set
 
 
@@ -27,7 +27,7 @@ def rotations(number: int) -> Set[int]:
 def main():
     # Prefill set with known circular primes
     result = {2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97}
-    for prime in gen_primes(max(result) + 1, 1000000):
+    for prime in primes(max(result) + 1, 1000000):
         if prime in result:
             continue
         print(f'Prime: {prime}')

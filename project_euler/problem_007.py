@@ -6,7 +6,7 @@ What is the 10 001st prime number?
 
 '''
 from itertools import count
-from primes import PrimeIterator
+from .utilities import primes
 import time
 
 def main(limit):
