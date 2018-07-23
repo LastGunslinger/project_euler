@@ -26,7 +26,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 '''
 import re
 from functools import reduce
-from .utilities import int_list
+from ..utilities import int_list
 
 
 def solve():

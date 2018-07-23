@@ -23,15 +23,8 @@ def is_prime(number: int) -> bool:
         return True
 
 
-def primes(start: int=1, stop: typ.Optional[int]=None):
-    yield 2
-    if start % 2 == 0:
-        start += 1
-    for num in itertools.count(start=start, step=2):
-        if stop and num >= stop:
-            raise StopIteration
-        if is_prime(num):
-            yield num
+def primes(stop: int=1000000):
+    yield from sieve_of_eratosthenes(stop)
 
 
 def factors(number: int) -> int:
@@ -45,7 +38,6 @@ def fibonacci(n: int=0, stop: int=0) -> int:
     Return the nth number in the Fibonacci sequence.
     If no n is given, count indefinitely
     '''
-    print('well hello')
     n1, n2 = 1, 2
     yield n1
     if n and n == 1:
@@ -63,3 +55,24 @@ def fibonacci(n: int=0, stop: int=0) -> int:
                 raise StopIteration
             yield fib_sum
             n1, n2 = n2, fib_sum
+
+
+def sieve_of_eratosthenes(limit: int=1000000):
+    sieve = {x: None for x in range(2, limit + 1)}
+    p_value = 2
+
+    while p_value in sieve:
+        if sieve[p_value] is None:
+            sieve[p_value] = True
+            yield p_value
+            for x in itertools.count(2):
+                key = p_value * x
+                if key in sieve:
+                    sieve[key] = False
+                else:
+                    p_value += 1
+                    break
+        elif sieve[p_value] is False:
+            p_value += 1
+        else:
+            raise StopIteration

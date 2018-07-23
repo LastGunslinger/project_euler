@@ -7,7 +7,7 @@ Note: 2, 3, 5, and 7 are not considered to be truncatable primes.
 '''
 
 import time
-from .utilities import primes, is_prime
+from ..utilities import primes, is_prime
 from termcolor import colored
 
 

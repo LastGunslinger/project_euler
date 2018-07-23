@@ -2,6 +2,7 @@ import importlib
 import sys
 import time
 import typing as typ
+from .checker import check_solution
 
 from termcolor import colored
 
@@ -18,7 +19,10 @@ def run(args: typ.List[typ.Any]):
 
 
 for arg, result, elapsed in run(sys.argv):
-    print(f'--- Summary ---')
-    print(f'Result  : {colored(result, "green")}')
+    print(f'----- Summary ----')
+    if check_solution(arg[-3:], result):
+        print(f'Result  : {colored(result, "green")}')
+    else:
+        print(f'Result  : {colored(result, "red")}')
     print(f'Elapsed : {colored(elapsed, "yellow")} seconds')
     print('-------------------')

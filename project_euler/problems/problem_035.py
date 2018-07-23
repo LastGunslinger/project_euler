@@ -11,7 +11,7 @@ import time
 from termcolor import colored
 
 import itertools
-from .utilities import primes, is_prime
+from ..utilities import primes, is_prime
 from typing import Set
 
 
