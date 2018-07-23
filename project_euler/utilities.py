@@ -24,6 +24,7 @@ def is_prime(number: int) -> bool:
 
 
 def primes(start: int=1, stop: typ.Optional[int]=None):
+    yield 2
     if start % 2 == 0:
         start += 1
     for num in itertools.count(start=start, step=2):
@@ -31,6 +32,12 @@ def primes(start: int=1, stop: typ.Optional[int]=None):
             raise StopIteration
         if is_prime(num):
             yield num
+
+
+def factors(number: int) -> int:
+    for x in range(2, math.ceil(math.sqrt(number)) + 1):
+        if number % x == 0:
+            yield x
 
 
 def fibonacci(n: int=0, stop: int=0) -> int:
