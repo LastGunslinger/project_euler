@@ -14,57 +14,14 @@ Find the maximum total from top to bottom in triangle.txt (right click and 'Save
 NOTE: This is a much more difficult version of Problem 18. It is not possible to try every route to solve this problem, as there are 299 altogether! If you could check one trillion (1012) routes every second it would take over twenty billion years to check them all. There is an efficient algorithm to solve it. ;o)
 
 '''
-import time
-import re
-import pytest
+from .problem_018 import gen_triangle, max_sum
+
 
 def solve():
-
-	triangle = gen_triangle()
-	return max_sum(triangle)
-
-def max_sum(triangle):
-	
-	for index in range(len(triangle) -2, -1, -1):
-		for col in range(0, len(triangle[index])):
-			left_branch = triangle[index + 1][col]
-			right_branch = triangle[index + 1][col + 1]
-			if left_branch >= right_branch:
-				triangle[index][col] += left_branch
-			else:
-				triangle[index][col] += right_branch
-		print(triangle[-2])
-		triangle.pop()
-
-	return triangle[0][0]
-
-
-def gen_triangle():
-	data = []
-	with open(r'C:\Users\rjoh716\Projects\project_euler\data\p067_triangle.txt', 'r') as f:
-		for line in f.readlines():
-			data_str = line.split()
-			data.append([int(x) for x in data_str])
-	return data
-
-def test_gen_triangle():
-	test_data = gen_triangle()
-	assert len(test_data) == 100
-	assert test_data[99][99] == 35
-
-def test_max_triangle_sum():
-	test_data = [
-		[3],
-		[7, 4],
-		[2, 4, 6],
-		[8, 5, 9, 3]
-	]
-	assert max_sum(test_data) == 23
-	
-
-if __name__ == '__main__':
-	start = time.time()
-	test_gen_triangle()
-	test_max_triangle_sum()
-	print(main())
-	print('--- {} seconds ---'.format(time.time()-start))
+    with open(r'project_euler/problems/problem_067.txt') as data_file:
+        triangle_data = []
+        for data in data_file.readlines():
+            row = [int(x) for x in data.split()]
+            triangle_data += row
+    triangle = gen_triangle(triangle_data)
+    return max_sum(triangle)

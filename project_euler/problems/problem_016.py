@@ -5,18 +5,8 @@
 What is the sum of the digits of the number 2^1000?
 
 '''
-import time
-import math
+from ..utilities import int_list
+
 
 def solve():
-	power = str(int(math.pow(2, 1000)))
-	print(power)
-	result = 0
-	for num in power:
-		result += int(num)
-	return result
-
-if __name__ == '__main__':
-	start = time.time()
-	print(main())
-	print('--- {} seconds ---'.format(time.time()-start))
+    return sum(int_list(2 ** 1000))
