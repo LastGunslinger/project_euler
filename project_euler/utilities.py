@@ -1,7 +1,6 @@
 import itertools
 import math
 import typing as typ
-from sympy.solvers import solve
 
 
 def number_of_factors(number: int) -> int:
