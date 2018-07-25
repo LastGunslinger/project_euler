@@ -1,5 +1,4 @@
 '''
-
 The following iterative sequence is defined for the set of positive integers:
 
 n → n/2 (n is even)
@@ -13,31 +12,25 @@ It can be seen that this sequence (starting at 13 and finishing at 1) contains 1
 Which starting number, under one million, produces the longest chain?
 
 NOTE: Once the chain starts the terms are allowed to go above one million.
-
+NOTE: RUN FROM THE COMMAND LINE! - To speed this module up, I run in multiprocess mode, which may not work correctly when run in the debugger.
 '''
-import time
+from multiprocessing import Pool
+from typing import Tuple
+
 
 def solve():
-	longest_chain = (2, 2)
-	for start in range(2, 1000000):
-		chain_len = len(get_chain(start))
-		print(start, chain_len)
-		if chain_len > longest_chain[1]:
-			longest_chain = (start, chain_len)
-	return longest_chain
-
-def get_chain(num):
-	chain = [num]
-	while num > 1:
-		if num % 2 == 0:
-			num = num/2
-		else:
-			num = 3*num + 1
-		chain.append(num)
-	return chain
+    chain_counts = Pool().map(count_chain, range(2, 1000000))
+    return max(chain_counts, key=lambda x: x[1])[0]
 
 
-if __name__ == '__main__':
-	start = time.time()
-	print(main())
-	print('--- {} seconds ---'.format(time.time()-start))
+def count_chain(number: int) -> Tuple[int]:
+    num = number
+    count = 1
+    while num > 1:
+        if num % 2 == 0:
+            num = num / 2
+        else:
+            num = (3 * num) + 1
+        count += 1
+    print(f'{int(number)} -> {count}')
+    return (int(number), count)
