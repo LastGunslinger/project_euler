@@ -17,11 +17,10 @@ We can see that 28 is the first triangle number to have over five divisors.
 
 What is the value of the first triangle number to have over five hundred divisors?
 '''
-from itertools import count
-from ..utilities import factors, prime_factors
-from multiprocessing import Pool
-import typing as typ
 from functools import reduce
+from itertools import count
+
+from ..utilities import prime_factors
 
 
 def solve():
@@ -40,16 +39,3 @@ def triangles(start: int=1):
     for x in count(start + 1):
         result += x
         yield result
-
-
-'''
-def factors(num):
-    results = [1, num]
-    if num <= 3:
-        return results
-    for x in range(2, int(math.sqrt(num) + 1)):
-        if num % x == 0:
-            results.append(x)
-            results.append(int(num / x))
-    return sorted(results)
-'''
