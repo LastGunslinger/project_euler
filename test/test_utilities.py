@@ -18,4 +18,3 @@ def test_divides():
 
 def test_prime_factors():
     assert set(utils.prime_factors(24)) == set([(2, 3), (3, 1)])
-

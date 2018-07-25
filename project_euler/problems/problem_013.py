@@ -100,8 +100,8 @@
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690
 '''
-import time
-import re
+from typing import List
+from ..utilities import int_list
 
 
 def solve():
@@ -207,29 +207,18 @@ def solve():
     20849603980134001723930671666823555245252804609722
     53503534226472524250874054075591789781264330331690
     '''
-    input_string = re.sub(r'\s+', '', input_string)
-    number_array = []
-    index = 0
-    for index, row in enumerate(range(0, 100)):
-        number_array.append([int(x) for x in input_string[index:index + 50]])
-        index += 50
-    for row in number_array:
-        print(row)
 
-    array_sum = []
-    total = 0
-    for column in range(49, -1, -1):
-        for row in number_array:
-            total += row[column]
-        array_sum.insert(0, int(str(total)[-1:]))
-        total = int(str(total)[:-1])
-    for num in str(total)[::-1]:
-        array_sum.insert(0, int(num))
+    input_array = input_string.split('\n')
+    number_array = [int(x.strip()) for x in input_array if x.strip()]
+    matrix = [int_list(x) for x in number_array]
+    num_len = 50
 
-    for num in array_sum:
-        print(num, end='')
-    print()
-    #print(''.join(array_sum[:10]))
-    print(array_sum)
-    result = ''.join([str(x) for x in array_sum])
-    return result[:10]
+    result = 0
+    for column in reversed(range(0, num_len)):
+        result += (add_columns(matrix, column) * 10 ** (num_len - column - 1))
+
+    return int(str(result)[:10])
+
+
+def add_columns(matrix: List[List[int]], col_index: int) -> int:
+    return sum(x[col_index] for x in matrix)
