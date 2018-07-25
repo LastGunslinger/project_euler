@@ -31,14 +31,14 @@ def primes(stop: int=50000):
     yield from sieve_of_eratosthenes(stop)
 
 
-def factors(number: int) -> int:
+def factors(number: int, proper: bool=False) -> int:
     divisors = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
     divisors = set(divisors)
     complements = map(lambda x: int(number / x), divisors)
     complements = set(complements)
     all_factors = sorted(divisors.union(complements))
 
-    yield from all_factors
+    yield from (x for x in all_factors if x != number and proper)
 
 
 def prime_factors(number: int) -> int:

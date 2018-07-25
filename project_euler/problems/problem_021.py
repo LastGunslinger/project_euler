@@ -12,15 +12,9 @@ from ..utilities import factors
 def solve():
     amicables = set()
     for number in range(1, 10000):
-        divisor_sum = sum(proper_divisors(number))
-        if sum(proper_divisors(divisor_sum)) == number and number != divisor_sum:
+        divisor_sum = sum(factors(number, proper=True))
+        if sum(factors(divisor_sum, proper=True)) == number and number != divisor_sum:
             amicables.add(number)
             amicables.add(divisor_sum)
             print(f'{number}, {divisor_sum}')
     return sum(amicables)
-
-
-def proper_divisors(number: int):
-    for factor in factors(number):
-        if factor != number:
-            yield factor
