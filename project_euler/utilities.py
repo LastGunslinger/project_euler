@@ -1,6 +1,11 @@
 import itertools
 import math
 import typing as typ
+from sympy.solvers import solve
+
+
+def number_of_factors(number: int) -> int:
+    pass
 
 
 def int_list(number: int) -> typ.List[int]:
@@ -23,14 +28,37 @@ def is_prime(number: int) -> bool:
         return True
 
 
-def primes(stop: int=1000000):
+def primes(stop: int=50000):
     yield from sieve_of_eratosthenes(stop)
 
 
 def factors(number: int) -> int:
-    for x in range(2, math.ceil(math.sqrt(number)) + 1):
-        if number % x == 0:
-            yield x
+    divisors = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
+    divisors = set(divisors)
+    complements = map(lambda x: int(number / x), divisors)
+    complements = set(complements)
+    all_factors = sorted(divisors.union(complements))
+
+    yield from all_factors
+
+
+def prime_factors(number: int) -> int:
+    factors = [] if number % 2 else [2]
+    for x in range(3, int(math.sqrt(number)) + 1, 2):
+        if number % x == 0 and is_prime(x):
+            factors.append(x)
+    return _divides(number, factors)
+
+
+def _divides(number: int, prime_divisors: typ.List[int]):
+    result = []
+    for divisor in sorted(prime_divisors, reverse=True):
+        count = 0
+        while number % divisor == 0:
+            number /= divisor
+            count += 1
+        result.append((divisor, count))
+    return result
 
 
 def fibonacci(n: int=0, stop: int=0) -> int:

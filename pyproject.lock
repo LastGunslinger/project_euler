@@ -216,6 +216,15 @@ version = "4.2.0"
 six = ">=1.0.0,<2.0.0"
 
 [[package]]
+category = "main"
+description = "Python library for arbitrary-precision floating-point arithmetic"
+name = "mpmath"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "1.0.0"
+
+[[package]]
 category = "dev"
 description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
@@ -341,6 +350,18 @@ version = "1.11.0"
 
 [[package]]
 category = "main"
+description = "Computer algebra system (CAS) in Python"
+name = "sympy"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "1.2"
+
+[package.dependencies]
+mpmath = ">=0.19"
+
+[[package]]
+category = "main"
 description = "ANSII Color formatting for output in terminal."
 name = "termcolor"
 optional = false
@@ -358,7 +379,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4"
 version = "1.23"
 
 [metadata]
-content-hash = "bbd39e97c2037908516c4b23ccb6d5d90fb473087642ade63a2e73762edac9e3"
+content-hash = "25575c65656235e3d3fcf0084dc51bbb71ccbf607ee80446cfe2d935b87ca7a6"
 platform = "*"
 python-versions = "~3.6.5"
 
@@ -381,6 +402,7 @@ jeepney = ["a6f2aa72e61660248d4d524dfccb6405f17c693b69af5d60dd7f2bab807d907e", "
 keyring = ["6364bb8c233f28538df4928576f4e051229e0451651073ab20b315488da16a58", "6e01954fd3e404820e1fade262ee661974051551ed08c899ffc5e88bb9df288e"]
 mccabe = ["ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", "dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"]
 more-itertools = ["2b6b9893337bfd9166bee6a62c2b0c9fe7735dcf85948b387ec8cba30e85d8e8", "6703844a52d3588f951883005efcf555e49566a48afd4db4e965d69b883980d3", "a18d870ef2ffca2b8463c0070ad17b5978056f403fb64e3f15fe62a52db21cc0"]
+mpmath = ["04d14803b6875fe6d69e6dccea87d5ae5599802e4b1df7997bddd2024001050c"]
 pluggy = ["7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff", "d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c", "e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5"]
 py = ["29c9fab495d7528e80ba1e343b958684f4ace687327e6f789a94bf3d1915f881", "983f77f3331356039fdd792e9220b7b8ee1aa6bd2b25f567a963ff1de5a64f6a"]
 pycodestyle = ["682256a5b318149ca0d2a9185d365d8864a768a28db66a84a2ea946bcc426766", "6c4245ade1edfad79c3446fadfc96b0de2759662dc29d07d80a6f27ad1ca6ba9"]
@@ -391,5 +413,6 @@ pywin32-ctypes = ["4820b830f42e6889d34142bcd07b3896018c3620d8c31f5e13b72caf1f4d1
 requests = ["63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1", "ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a"]
 secretstorage = ["1bbf5b85a718854916d1c151fa33e6f667e3c005e033ea46d4123384d233b137", "819087ca89c0d6c5711692f41fb26f786af9dcc5bb89d567722a66edfbb2a689"]
 six = ["70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9", "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb"]
+sympy = ["286ca070d72e250861dea7a21ab44f541cb2341e8268c70264cf8642dbd9225f"]
 termcolor = ["1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"]
 urllib3 = ["a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf", "b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5"]
