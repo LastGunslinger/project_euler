@@ -65,7 +65,7 @@ def fibonacci(n: int=0, stop: int=0) -> int:
     Return the nth number in the Fibonacci sequence.
     If no n is given, count indefinitely
     '''
-    n1, n2 = 1, 2
+    n1, n2 = 1, 1
     yield n1
     if n and n == 1:
         raise StopIteration
