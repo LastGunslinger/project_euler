@@ -24,8 +24,7 @@ from ..utilities import fibonacci
 
 
 def solve():
-    limit = 2
+    limit = 1000
     for index, fib in enumerate(fibonacci(), start=1):
-        print(index, fib)
         if len(str(fib)) >= limit:
             return index
