@@ -24,6 +24,8 @@ import re
 
 
 def solve():
+    assert divide(1, 11) == 2
+    assert divide(1, 12) == 1
     limit = 1000
     longest_recurring = 2
     recurring_length = 1
