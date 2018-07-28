@@ -10,7 +10,8 @@ def _get_solution(problem: int):
         match = re.search(fr'.*\s{problem}\.\s(?P<solution>\d+)', resp.text)
         try:
             return int(match.group('solution'))
-        except Exception:
+        except Exception as exc:
+            print(exc)
             message = f'Solution not found for problem {problem}'
             print(message)
             raise Exception(message)

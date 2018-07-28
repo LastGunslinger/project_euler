@@ -18,13 +18,30 @@ import time
 import pytest
 import re
 import math
-from ..utilities import is_prime
+from ..utilities import is_prime, int_list
+import typing as typ
+import re
 
 
 def solve():
     limit = 1000
-    longest_recurring = 7
-    recurring_length = 6
+    longest_recurring = 2
+    recurring_length = 1
+    for number in range(2, limit):
+        q = []
+        for x in divide(1, number):
+            q.append(x)
+            new_len = pattern_len(q, min_len=recurring_length)
+            if new_len > recurring_length:
+                print(f'1 / {number} : {new_len} : {q}')
+                if new_len > recurring_length:
+                    recurring_length = new_len
+                    longest_recurring = number
+                break
+    print(f'1 / {longest_recurring} : {recurring_length}')
+    return longest_recurring
+
+
     for x in range(1, limit):
         q, length = long_divide(1, x)
         if length > recurring_length:
@@ -50,3 +67,41 @@ def long_divide(dividend, divisor):
             # print(match.group(1))
             return quotient, len(match.group(1))
     return quotient, 0
+
+
+def divide(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
+    if isinstance(dividend, int):
+        dividend = int_list(dividend)
+    if dividend[0] == 0 and len(dividend) == 1:
+        raise StopIteration
+    elif divisor > dividend[0] and len(dividend) > 1:
+        dividend[0] = int(str(dividend[0]) + str(dividend.pop(1)))
+        yield 0
+        yield from divide(dividend, divisor)
+    elif divisor > dividend[0] and len(dividend) == 1:
+        dividend[0] *= 10
+        yield 0
+        yield from divide(dividend, divisor)
+    else:
+        q = int(dividend[0] / divisor)
+        remainder = dividend[0] % divisor
+        dividend[0] = remainder
+        if len(dividend) == 1 and dividend[0] != 0:
+            dividend[0] *= 10
+        yield q
+        yield from divide(dividend, divisor)
+
+
+def pattern_len(seq: typ.List[int], min_len: int=1) -> int:
+    seq = ''.join([str(x) for x in seq])
+    match = re.match(fr'(?P<repeat>\d+)\1', seq[::-1])
+    if match:
+        if re.match(r'\A0+\Z', match.group('repeat')):
+            return 0
+        else:
+            return len(match.group('repeat'))
+    else:
+        return 0
+
+
+
