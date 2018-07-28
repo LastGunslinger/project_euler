@@ -24,8 +24,8 @@ import re
 
 
 def solve():
-    assert divide(1, 11) == 2
-    assert divide(1, 12) == 1
+    # assert divide(1, 7) == 1
+    # assert divide(1, 11) == 2
     limit = 1000
     longest_recurring = 2
     recurring_length = 1
@@ -34,12 +34,14 @@ def solve():
         for x in divide(1, number):
             q.append(x)
             new_len = pattern_len(q, min_len=recurring_length)
-            if new_len > recurring_length:
-                print(f'1 / {number} : {new_len} : {q}')
-                if new_len > recurring_length:
-                    recurring_length = new_len
-                    longest_recurring = number
-                break
+            if new_len == 0:
+                continue
+            elif new_len > recurring_length:
+                recurring_length = new_len
+                longest_recurring = number
+            break
+        print(f'1 / {number} : {new_len} : {q}')
+
     print(f'1 / {longest_recurring} : {recurring_length}')
     return longest_recurring
 
@@ -96,14 +98,10 @@ def divide(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
 
 def pattern_len(seq: typ.List[int], min_len: int=1) -> int:
     seq = ''.join([str(x) for x in seq])
-    match = re.match(fr'(?P<repeat>\d+)\1', seq[::-1])
+    seq = re.sub(r'\A0+', '', seq, count=1)
+    # print(seq)
+    match = re.match(fr'\d*(?P<repeat>\d+)\1', seq)
     if match:
-        if re.match(r'\A0+\Z', match.group('repeat')):
-            return 0
-        else:
-            return len(match.group('repeat'))
+        return len(match.group('repeat'))
     else:
         return 0
-
-
-
