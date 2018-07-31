@@ -24,23 +24,19 @@ import re
 
 
 def solve():
-    assert divide(1, 11) == 2
-    assert divide(1, 12) == 1
     limit = 1000
-    
     longest_recurring = 2
     recurring_length = 1
     for number in range(2, limit):
-        q = []
-        for x in divide(1, number):
-            q.append(x)
-            new_len = pattern_len(q, min_len=recurring_length)
+        q, new_len = repeats(1, number)
+        # q, new_len = find_pattern(q, min_len=recurring_length)
+        print(f'1 / {number} : {new_len} : {q}')
+        if new_len > recurring_length:
+            print(f'1 / {number} : {new_len} : {q}')
             if new_len > recurring_length:
-                print(f'1 / {number} : {new_len} : {q}')
-                if new_len > recurring_length:
-                    recurring_length = new_len
-                    longest_recurring = number
-                break
+                recurring_length = new_len
+                longest_recurring = number
+
     print(f'1 / {longest_recurring} : {recurring_length}')
     return longest_recurring
 
@@ -71,7 +67,7 @@ def long_divide(dividend, divisor):
             return quotient, len(match.group(1))
     return quotient, 0
 
-
+'''
 def divide(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
     if isinstance(dividend, int):
         dividend = int_list(dividend)
@@ -93,18 +89,65 @@ def divide(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
             dividend[0] *= 10
         yield q
         yield from divide(dividend, divisor)
+'''
 
 
-def pattern_len(seq: typ.List[int], min_len: int=1) -> int:
-    seq = ''.join([str(x) for x in seq])
-    match = re.match(fr'(?P<repeat>\d+)\1', seq[::-1])
-    if match:
-        if re.match(r'\A0+\Z', match.group('repeat')):
-            return 0
+def repeats(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
+    if isinstance(dividend, int):
+        dividend = int_list(dividend)
+
+    quotient = []
+    while not (dividend[0] == 0 and len(dividend) == 1):
+        if divisor > dividend[0] and len(dividend) > 1:
+            dividend[0] = int(str(dividend[0]) + str(dividend.pop(1)))
+            quotient.append(0)
+            # yield from divide(dividend, divisor)
+        elif divisor > dividend[0] and len(dividend) == 1:
+            dividend[0] *= 10
+            quotient.append(0)
+            # yield from divide(dividend, divisor)
         else:
-            return len(match.group('repeat'))
-    else:
+            q = int(dividend[0] / divisor)
+            remainder = dividend[0] % divisor
+            dividend[0] = remainder
+            if len(dividend) == 1 and dividend[0] != 0:
+                dividend[0] *= 10
+            quotient.append(q)
+            # yield from divide(dividend, divisor)
+        
+        pattern = find_pattern(quotient)
+        if pattern:
+            return pattern, len(pattern)
+
+    return quotient, 0
+
+
+def find_pattern(seq: typ.List[int], min_len: int=1) -> int:
+    seq = seq.copy()
+    '''
+    while seq and seq[0] == 0:
+        seq.pop(0)
+    if len(seq) < 2:
         return 0
+
+    start_index = 0
+    mid_index = int(len(seq) / 2)
+    while start_index < mid_index < len(seq):
+        if seq[start_index:mid_index] == seq[mid_index:mid_index + (mid_index - start_index)]:
+            return len(seq[start_index:mid_index])
+        else:
+            start_index += 1
+
+    return 0
+    '''
+
+    seq = ''.join([str(x) for x in seq])
+    seq = re.sub(r'\A0+', '', seq, count=1)
+    match = re.match(r'\A[0-9]+(?P<repeat>\d+)\1\1\Z', seq)
+    if match:
+        return [x for x in match.group('repeat')]
+    else:
+        return None
 
 
 
