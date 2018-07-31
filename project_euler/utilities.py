@@ -20,7 +20,9 @@ def is_prime(number: int) -> bool:
         return False
     elif 2 <= number <= 3:
         return True
-    for x in range(2, int(math.sqrt(number)) + 1):
+    elif number % 2 == 0:
+        return False
+    for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0:
             return False
     else:

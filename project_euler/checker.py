@@ -7,7 +7,7 @@ def _get_solution(problem: int):
     '''Pull the solution from the luckytoilet solution repo'''
     url = 'https://raw.githubusercontent.com/luckytoilet/projecteuler-solutions/master/Solutions.md'
     with req.get(url) as resp:
-        match = re.search(fr'.*\s{problem}\.\s(?P<solution>\d+)', resp.text)
+        match = re.search(fr'.*{problem}\.\s(?P<solution>\d+)', resp.text)
         try:
             return int(match.group('solution'))
         except Exception as exc:

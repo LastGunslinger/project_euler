@@ -1,53 +1,62 @@
-import time
-import pytest
-import math
+'''
+Euler discovered the remarkable quadratic formula:
+
+n^2+n+41
+
+It turns out that the formula will produce 40 primes for the consecutive integer values 0≤n≤39
+. However, when n=40,40^2+40+41=40(40+1)+41 is divisible by 41, and certainly when n=41,41^2+41+41
+
+is clearly divisible by 41.
+
+The incredible formula n^2−79n+1601
+was discovered, which produces 80 primes for the consecutive values 0≤n≤79
+
+. The product of the coefficients, −79 and 1601, is −126479.
+
+Considering quadratics of the form:
+
+    n^2+an+b
+
+, where |a|<1000 and |b|≤1000
+
+where |n|
+is the modulus/absolute value of n
+e.g. |11|=11 and |−4|=4
+
+Find the product of the coefficients, a
+and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
+'''
+from ..utilities import is_prime
+from itertools import count
+
 
 def quadratic(x, a, b):
-	return sum([x**2, a*x, b])
+    return (x ** 2) + (a * x) + b
 
-def test_Quadratic():
-	assert quadratic(3, -79, 1601) == 1373
 
-def is_prime(number):
-	if number < 2:
-		return False
-	elif number == 2:
-		return True
-	else:
-		for x in range(2, math.ceil(math.sqrt(number) + 1 )):
-			if number % x == 0:
-				return False
-		return True
+def gen_solutions(a: int, b: int):
+    for x in count(start=0):
+        if x == abs(b):
+            raise StopIteration
+        yield quadratic(x, a, b)
 
-def test_is_prime():
-	assert is_prime(2) == True
-	assert is_prime(3) == True
-	assert is_prime(18) == False
-	assert is_prime(27) == False
 
-def solve(a_limit, b_limit):
-	prime_count = 0
-	coeffs = (None, None)
-	for a in range(-a_limit + 1, a_limit):
-		for b in range(-b_limit, b_limit + 1):
-			x = 0
-			q = quadratic(x, a, b)
-			primes = []
-			while( is_prime(q) ):
-				primes.append(q)
-				x += 1
-				q = quadratic(x, a, b)
-			if len(primes) > prime_count:
-				prime_count = len(primes)
-				coeffs = (a, b)
-				print(f'x^2 + ({a})x + ({b}) = {primes}')
-	return coeffs, prime_count
+def solve():
+    a_range = range(-1000, 1000 + 1)
+    b_range = range(-1000, 1000 + 1)
+    max_prime_count = 0
+    coeffs = (None, None)
+    for a in a_range:
+        prime_count = 0
+        for b in b_range:
+            for solution in gen_solutions(a, b):
+                if is_prime(solution):
+                    prime_count += 1
+                else:
+                    break
+            print(f'x^2 + ({a})x + ({b}) returns {prime_count} primes')
+            if prime_count > max_prime_count:
+                max_prime_count = prime_count
+                coeffs = (a, b)
 
-def test_main():
-	coeffs, prime_count = main(10, 10)
-	print(coeffs, prime_count)
-
-if __name__ == '__main__':
-	start = time.time()
-	print(main(1000, 1000))
-	print('--- {} seconds ---'.format(time.time()-start))
+    return coeffs[0] * coeffs[1]
