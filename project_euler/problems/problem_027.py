@@ -25,24 +25,30 @@ e.g. |11|=11 and |−4|=4
 
 Find the product of the coefficients, a
 and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
+
+##### Assumptions #####
+1. Consecutive primes are always counted starting from n = 0
+2. Assuming point 1 is true, b can never be an even number > 2
+3. Assuming point 1 is true, b can never be negative
+
 '''
-from ..utilities import is_prime
+from ..utilities import is_prime, primes, is_even
 from itertools import count
 
 
-def quadratic(x, a, b):
-    return (x ** 2) + (a * x) + b
+def quadratic(n, a, b):
+    return (n ** 2) + (a * n) + b
 
 
 def gen_solutions(a: int, b: int):
-    for x in count(start=0):
-        if x == abs(b):
+    for n in count(start=0):
+        if n == abs(b):
             raise StopIteration
-        yield quadratic(x, a, b)
+        yield quadratic(n, a, b)
 
 
 def solve():
-    a_range = range(-1000, 1000 + 1)
+    a_range = range(-1000 + 1, 1000 + 1)
     b_range = range(-1000, 1000 + 1)
     max_prime_count = 0
     coeffs = (None, None)
@@ -50,6 +56,7 @@ def solve():
         prime_count = 0
         for b in b_range:
             for solution in gen_solutions(a, b):
+                # if solution in all_primes:
                 if is_prime(solution):
                     prime_count += 1
                 else:

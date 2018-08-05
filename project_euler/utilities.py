@@ -20,13 +20,24 @@ def is_prime(number: int) -> bool:
         return False
     elif 2 <= number <= 3:
         return True
-    elif number % 2 == 0:
+    elif is_even(number):
         return False
     for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0:
             return False
     else:
         return True
+
+
+def is_odd(number: int) -> bool:
+    if number % 2:
+        return True
+    else:
+        return False
+
+
+def is_even(number: int) -> bool:
+    return not is_odd(number)
 
 
 def primes(stop: int=50000):
