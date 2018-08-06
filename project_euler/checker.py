@@ -9,7 +9,7 @@ def _get_solution(problem: int):
     with req.get(url) as resp:
         match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
         try:
-            return match.group('solution')
+            return float(match.group('solution'))
         except Exception as exc:
             print(exc)
             message = f'Solution not found for problem {problem}'
