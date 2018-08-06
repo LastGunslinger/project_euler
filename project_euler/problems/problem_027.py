@@ -33,7 +33,7 @@ and b, for the quadratic expression that produces the maximum number of primes f
 4. When n = 1, a must be an odd number if b is odd
 
 '''
-from ..utilities import is_prime, primes, is_even, is_odd
+from ..utilities import is_prime, primes
 from itertools import count
 
 
