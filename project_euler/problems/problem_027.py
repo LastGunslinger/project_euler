@@ -28,11 +28,12 @@ and b, for the quadratic expression that produces the maximum number of primes f
 
 ##### Assumptions #####
 1. Consecutive primes are always counted starting from n = 0
-2. Assuming point 1 is true, b can never be an even number > 2
-3. Assuming point 1 is true, b can never be negative
+2. Assuming point 1 is true, when n = 0, b must be a prime number
+3. Assuming point 2 is true, b can never be negative
+4. When n = 1, a must be an odd number if b is odd
 
 '''
-from ..utilities import is_prime, primes, is_even
+from ..utilities import is_prime, primes, is_even, is_odd
 from itertools import count
 
 
@@ -42,28 +43,24 @@ def quadratic(n, a, b):
 
 def gen_solutions(a: int, b: int):
     for n in count(start=0):
-        if n == abs(b):
-            raise StopIteration
         yield quadratic(n, a, b)
 
 
 def solve():
-    a_range = range(-1000 + 1, 1000 + 1)
-    b_range = range(-1000, 1000 + 1)
+    limit = 1000
+    prime_sieve = list(primes(limit + 1))
+    a_range = range(-(limit - 1), limit, 2)
+    b_range = prime_sieve
     max_prime_count = 0
     coeffs = (None, None)
     for a in a_range:
-        prime_count = 0
         for b in b_range:
-            for solution in gen_solutions(a, b):
-                # if solution in all_primes:
-                if is_prime(solution):
-                    prime_count += 1
-                else:
-                    break
-            print(f'x^2 + ({a})x + ({b}) returns {prime_count} primes')
-            if prime_count > max_prime_count:
-                max_prime_count = prime_count
-                coeffs = (a, b)
+            n = 0
+            while is_prime(quadratic(n, a, b)):
+                n += 1
 
-    return coeffs[0] * coeffs[1]
+            if n > max_prime_count:
+                print(f'x^2 + ({a})x + ({b}) returns {n} primes')
+                max_prime_count = n
+                coeffs = (a, b)
+    return int(coeffs[0] * coeffs[1])

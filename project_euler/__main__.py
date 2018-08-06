@@ -20,9 +20,6 @@ def run(args: typ.List[typ.Any]):
 
 for arg, result, elapsed in run(sys.argv):
     print(f'----- Summary ----')
-    if check_solution(arg[-3:], result):
-        print(f'Result  : {colored(result, "green")}')
-    else:
-        print(f'Result  : {colored(result, "red")}')
-    print(f'Elapsed : {colored(elapsed, "yellow")} seconds')
+    print(f'Result  : {colored(result, "green" if check_solution(arg[-3:], result) else "red")}')
+    print(f'Elapsed : {colored(elapsed, "green" if elapsed < 60 else "red")} seconds')
     print('-------------------')

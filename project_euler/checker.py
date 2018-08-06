@@ -7,9 +7,10 @@ def _get_solution(problem: int):
     '''Pull the solution from the luckytoilet solution repo'''
     url = 'https://raw.githubusercontent.com/luckytoilet/projecteuler-solutions/master/Solutions.md'
     with req.get(url) as resp:
-        match = re.search(fr'.*{problem}\.\s(?P<solution>\d+)', resp.text)
+        print(resp.text)
+        match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
         try:
-            return int(match.group('solution'))
+            return match.group('solution')
         except Exception as exc:
             print(exc)
             message = f'Solution not found for problem {problem}'
@@ -21,6 +22,6 @@ def check_solution(problem: typ.Union[int, str], solution: int):
     if isinstance(problem, str):
         problem = int(problem)
     try:
-        return solution == _get_solution(problem)
+        return float(solution) == float(_get_solution(problem))
     except Exception:
         return False
