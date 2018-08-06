@@ -7,7 +7,6 @@ def _get_solution(problem: int):
     '''Pull the solution from the luckytoilet solution repo'''
     url = 'https://raw.githubusercontent.com/luckytoilet/projecteuler-solutions/master/Solutions.md'
     with req.get(url) as resp:
-        print(resp.text)
         match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
         try:
             return match.group('solution')
