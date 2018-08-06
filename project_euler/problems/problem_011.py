@@ -29,7 +29,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 from functools import reduce
 
 
-def solve():
+def solve(logger):
 
     raw_grid = '''
     08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08

@@ -21,7 +21,7 @@ def abundants(limit: int) -> int:
             yield number
 
 
-def solve():
+def solve(logger):
     limit = 28123
     abundant_nums = list(abundants(limit + 1))
     abundant_sums = {x + y for x in abundant_nums for y in abundant_nums if x <= y and x + y <= limit}

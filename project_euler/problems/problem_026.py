@@ -20,7 +20,7 @@ import typing as typ
 from ..utilities import int_list
 
 
-def solve():
+def solve(logger):
     limit = 1000
     longest_recurring = 2
     recurring_length = 1

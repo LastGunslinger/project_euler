@@ -46,7 +46,7 @@ def gen_solutions(a: int, b: int):
         yield quadratic(n, a, b)
 
 
-def solve():
+def solve(logger):
     limit = 1000
     prime_sieve = list(primes(limit + 1))
     a_range = range(-(limit - 1), limit, 2)

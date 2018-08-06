@@ -17,7 +17,7 @@ NOTE: This is a much more difficult version of Problem 18. It is not possible to
 from .problem_018 import gen_triangle, max_sum
 
 
-def solve():
+def solve(logger):
     with open(r'project_euler/problems/problem_067.txt') as data_file:
         triangle_data = []
         for data in data_file.readlines():

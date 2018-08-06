@@ -14,7 +14,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 '''
 
 
-def solve():
+def solve(logger):
     months = {
         '01-January': 31,
         '02-February': 28,

@@ -6,7 +6,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 from ..utilities import int_list
 
 
-def solve():
+def solve(logger):
     palindromes = []
     # loop backwards through n * m for 100 <= m <= n <= 1000
     for m in reversed(range(100, 1000)):

@@ -35,7 +35,7 @@ def truncatable_prime(number: int):
     return left_truncatable(number) and right_truncatable(number)
 
 
-def solve():
+def solve(logger):
     result = set()
     for prime in primes(11):  # Start generating primes at 11 due to problem restrictions
         if truncatable_prime(prime):

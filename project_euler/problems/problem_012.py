@@ -23,7 +23,7 @@ from itertools import count
 from ..utilities import prime_factors
 
 
-def solve():
+def solve(logger):
     start = 1000
     for triangle in triangles(start):
         p_factors = prime_factors(triangle)

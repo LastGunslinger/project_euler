@@ -6,7 +6,7 @@ What is the largest prime factor of the number 600851475143 ?
 from ..utilities import prime_factors
 
 
-def solve():
+def solve(logger):
     number = 600851475143
     # prime_factors = [x for x in gen_prime_factors(number)]
     # print(sorted(prime_factors(number)))

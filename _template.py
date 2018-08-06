@@ -4,7 +4,7 @@ import time
 import pytest
 
 
-def solve():
+def solve(logger):
     return
 
 

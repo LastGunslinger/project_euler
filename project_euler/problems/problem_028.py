@@ -89,7 +89,7 @@ def test_sum_diagonals():
     print(sum_diagonals(matrix))
 
 
-def solve():
+def solve(logger):
     size = 1001
     mtx = Matrix(size, size)
     mtx = paint_box(mtx)

@@ -12,7 +12,7 @@ def name_value(name):
     return sum(ord(x) - 64 for x in name)
 
 
-def solve():
+def solve(logger):
     with open(r'project_euler/problems/problem_022.txt', 'r') as name_file:
         data = name_file.read().replace('\"', '')
         names = data.split(',')

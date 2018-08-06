@@ -9,7 +9,7 @@ Find the product abc.
 '''
 
 
-def solve():
+def solve(logger):
     a = 1
     b = a + 1
     while a < b:

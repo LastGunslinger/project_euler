@@ -10,5 +10,5 @@ from ..utilities import int_list
 from math import factorial
 
 
-def solve():
+def solve(logger):
     return sum(int_list(factorial(100)))

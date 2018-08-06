@@ -6,7 +6,7 @@ Find the sum of all the primes below two million.
 from ..utilities import primes
 
 
-def solve():
+def solve(logger):
     limit = 2000000
     prime_sum = 0
     for prime in primes(stop=limit):

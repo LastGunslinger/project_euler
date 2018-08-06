@@ -9,7 +9,7 @@ Evaluate the sum of all the amicable numbers under 10000.
 from ..utilities import factors
 
 
-def solve():
+def solve(logger):
     amicables = set()
     for number in range(1, 10000):
         divisor_sum = sum(factors(number, proper=True))

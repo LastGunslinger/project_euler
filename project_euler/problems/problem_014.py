@@ -18,7 +18,7 @@ from multiprocessing import Pool
 from typing import Tuple
 
 
-def solve():
+def solve(logger):
     with Pool() as pool:
         chain_counts = pool.map(count_chain, range(2, 1000000))
     return max(chain_counts, key=lambda x: x[1])[0]

@@ -10,6 +10,6 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 from ..utilities import fibonacci
 
 
-def solve():
+def solve(logger):
     upper_bound = 4000000
     return sum(x for x in fibonacci(stop=upper_bound) if x % 2 == 0)

@@ -33,7 +33,7 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
 from typing import List
 
 
-def solve():
+def solve(logger):
     data = '''
         75
         95 64
