@@ -29,7 +29,11 @@ def run(args: typ.List[typ.Any]):
             logger.addHandler(handler)
 
             start = time.time()
-            yield arg, problem.solve(logger), time.time() - start
+            solution = problem.solve(logger)
+            elapsed = time.time() - start
+            logger.info(f'SOLUTION = {solution}')
+            logger.info(f'SOLUTION TIME = {elapsed} s')
+            yield arg, solution, elapsed
 
 
 for arg, result, elapsed in run(sys.argv):
