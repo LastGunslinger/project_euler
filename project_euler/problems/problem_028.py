@@ -11,87 +11,86 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 '''
-import time
-import pytest
+
 
 class Matrix:
-	def __init__(self, rows, columns):
-		self.matrix = [ [0 for _ in range(columns)] for _ in range(rows) ]
-		self.center = int(rows/2), int(columns/2)
-		self.size = len(self.matrix)
+    def __init__(self, rows, columns):
+        self.matrix = [[0 for _ in range(columns)] for _ in range(rows)]
+        self.center = int(rows / 2), int(columns / 2)
+        self.size = len(self.matrix)
 
-	def get_coordinate(self, x, y):
-		return self.matrix[x][y]
+    def get_coordinate(self, x, y):
+        return self.matrix[x][y]
 
-	def set_coordinate(self, x, y, value):
-		self.matrix[x][y] = value
+    def set_coordinate(self, x, y, value):
+        self.matrix[x][y] = value
 
-	def __repr__(self):
-		print_str = ''
-		for row in self.matrix:
-			print_str += row.__repr__() + '\n'
-		return print_str
+    def __repr__(self):
+        print_str = ''
+        for row in self.matrix:
+            print_str += row.__repr__() + '\n'
+        return print_str
+
 
 def create_matrix(rows, columns):
-	return [ [0 for _ in range(columns)] for _ in range(rows) ]
+    return [[0 for _ in range(columns)] for _ in range(rows)]
+
 
 def test_create_matrix():
-	matrix = create_matrix(5, 5)
-	for row in matrix:
-		print(row)
+    matrix = create_matrix(5, 5)
+    for row in matrix:
+        print(row)
+
 
 def paint_box(matrix):
-	box_size = 3
-	count = 1
-	x, y = matrix.center
-	matrix.set_coordinate(x, y, count)
-	while box_size <= matrix.size:
-		y += 1
-		count += 1
-		matrix.set_coordinate(x, y, count)
-		for _ in range(box_size - 2):
-			x += 1
-			count += 1
-			matrix.set_coordinate(x, y, count)
-		for _ in range(box_size - 1):
-			y -= 1
-			count += 1
-			matrix.set_coordinate(x, y, count)
-		for _ in range(box_size - 1):
-			x -= 1
-			count += 1
-			matrix.set_coordinate(x, y, count)
-		for _ in range(box_size - 1):
-			y += 1
-			count += 1
-			matrix.set_coordinate(x, y, count)
-		box_size += 2
-	return matrix
+    box_size = 3
+    count = 1
+    x, y = matrix.center
+    matrix.set_coordinate(x, y, count)
+    while box_size <= matrix.size:
+        y += 1
+        count += 1
+        matrix.set_coordinate(x, y, count)
+        for _ in range(box_size - 2):
+            x += 1
+            count += 1
+            matrix.set_coordinate(x, y, count)
+        for _ in range(box_size - 1):
+            y -= 1
+            count += 1
+            matrix.set_coordinate(x, y, count)
+        for _ in range(box_size - 1):
+            x -= 1
+            count += 1
+            matrix.set_coordinate(x, y, count)
+        for _ in range(box_size - 1):
+            y += 1
+            count += 1
+            matrix.set_coordinate(x, y, count)
+        box_size += 2
+    return matrix
+
 
 def test_paint_box():
-	print()
-	matrix = Matrix(5, 5)
-	print(paint_box(matrix))
+    print()
+    matrix = Matrix(5, 5)
+    print(paint_box(matrix))
+
 
 def sum_diagonals(matrix):
-	result = 0
-	diagonal = { matrix.matrix[x][y] for x in range(matrix.size) for y in range(matrix.size) if (x == y or x + y == matrix.size - 1) }
-	return sum(diagonal)
+    diagonal = {matrix.matrix[x][y] for x in range(matrix.size) for y in range(
+        matrix.size) if (x == y or x + y == matrix.size - 1)}
+    return sum(diagonal)
+
 
 def test_sum_diagonals():
-	matrix = Matrix(5, 5)
-	matrix = paint_box(matrix)
-	print(sum_diagonals(matrix))
+    matrix = Matrix(5, 5)
+    matrix = paint_box(matrix)
+    print(sum_diagonals(matrix))
 
-def solve(size):
-	mtx = Matrix(size, size)
-	mtx = paint_box(mtx)
-	return sum_diagonals(mtx)
 
-def test_main():
-	pass
-
-if __name__ == '__main__':
-	start = time.time()
-	print(main(1001))
-	print('--- {} seconds ---'.format(time.time()-start))
+def solve():
+    size = 1001
+    mtx = Matrix(size, size)
+    mtx = paint_box(mtx)
+    return sum_diagonals(mtx)
