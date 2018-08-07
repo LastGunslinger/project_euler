@@ -1,4 +1,4 @@
-'''
+prompt = '''
 You are given the following information, but you may prefer to do some research for yourself.
 
     1 Jan 1900 was a Monday.
@@ -15,6 +15,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 
 
 def solve(logger):
+    logger.debug(prompt)
     months = {
         '01-January': 31,
         '02-February': 28,

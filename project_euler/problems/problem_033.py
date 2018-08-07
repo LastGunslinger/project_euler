@@ -1,4 +1,4 @@
-'''
+prompt = '''
 The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
 
 We shall consider fractions like, 30/50 = 3/5, to be trivial examples.
@@ -47,6 +47,7 @@ def generate_fractions():
 
 
 def solve(logger):
+    logger.debug(prompt)
     naive_fractions = []
     for num, denom in generate_fractions():
         reduced = fraction_reduce(num, denom)

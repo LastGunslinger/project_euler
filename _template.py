@@ -1,10 +1,11 @@
-'''
+prompt = '''
 '''
 import time
 import pytest
 
 
 def solve(logger):
+    logger.debug(prompt)
     return
 
 

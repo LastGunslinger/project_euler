@@ -1,4 +1,4 @@
-'''
+prompt = '''
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
     192 × 1 = 192
@@ -48,6 +48,7 @@ def concatenate_products(number: int) -> int:
 
 
 def solve(logger):
+    logger.debug(prompt)
     result = []
     for x in range(555555555):
         product = concatenate_products(x)

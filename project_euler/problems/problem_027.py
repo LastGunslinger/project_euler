@@ -1,4 +1,4 @@
-'''
+prompt = '''
 Euler discovered the remarkable quadratic formula:
 
 n^2+n+41
@@ -47,6 +47,7 @@ def gen_solutions(a: int, b: int):
 
 
 def solve(logger):
+    logger.debug(prompt)
     limit = 1000
     prime_sieve = list(primes(limit + 1))
     a_range = range(-(limit - 1), limit, 2)

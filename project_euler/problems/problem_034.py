@@ -1,4 +1,4 @@
-'''
+prompt = '''
 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
 
 Find the sum of all numbers which are equal to the sum of the factorial of their digits.
@@ -25,6 +25,7 @@ def largest_digit(number: int) -> int:
 
 
 def solve(logger):
+    logger.debug(prompt)
     lower_limit = 3
     upper_limit = factorial(9)  # No number can be higher than 9!
 

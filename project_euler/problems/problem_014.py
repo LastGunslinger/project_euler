@@ -1,4 +1,4 @@
-'''
+prompt = '''
 The following iterative sequence is defined for the set of positive integers:
 
 n → n/2 (n is even)
@@ -19,6 +19,7 @@ from typing import Tuple
 
 
 def solve(logger):
+    logger.debug(prompt)
     with Pool() as pool:
         chain_counts = pool.map(count_chain, range(2, 1000000))
     return max(chain_counts, key=lambda x: x[1])[0]

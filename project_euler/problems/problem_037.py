@@ -1,4 +1,4 @@
-'''
+prompt = '''
 The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly we can work from right to left: 3797, 379, 37, and 3.
 
 Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
@@ -36,6 +36,7 @@ def truncatable_prime(number: int):
 
 
 def solve(logger):
+    logger.debug(prompt)
     result = set()
     for prime in primes(11):  # Start generating primes at 11 due to problem restrictions
         if truncatable_prime(prime):

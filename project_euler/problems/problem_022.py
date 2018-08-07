@@ -1,4 +1,4 @@
-'''
+prompt = '''
 Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order.
 Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
 
@@ -14,6 +14,7 @@ def name_value(name):
 
 
 def solve(logger):
+    logger.debug(prompt)
     with open(r'project_euler/problems/problem_022.txt', 'r') as name_file:
         data = name_file.read().replace('\"', '')
         names = data.split(',')

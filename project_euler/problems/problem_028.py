@@ -1,4 +1,4 @@
-'''
+prompt = '''
 Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed as follows:
 
 21 22 23 24 25
@@ -90,6 +90,7 @@ def test_sum_diagonals():
 
 
 def solve(logger):
+    logger.debug(prompt)
     size = 1001
     mtx = Matrix(size, size)
     mtx = paint_box(mtx)

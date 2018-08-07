@@ -1,4 +1,4 @@
-'''
+prompt = '''
 Consider all integer combinations of a^b for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
 
 2^2=4, 2^3=8, 2^4=16, 2^5=32
@@ -20,6 +20,7 @@ def gen_terms(a_limits, b_limits):
 
 
 def solve(logger):
+    logger.debug(prompt)
     a_limits = (2, 100)
     b_limits = (2, 100)
     combinations = {x for x in gen_terms(a_limits, b_limits)}

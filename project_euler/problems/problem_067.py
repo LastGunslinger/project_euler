@@ -1,4 +1,4 @@
-'''
+prompt = '''
 
 By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
 
@@ -18,6 +18,7 @@ from .problem_018 import gen_triangle, max_sum
 
 
 def solve(logger):
+    logger.debug(prompt)
     with open(r'project_euler/problems/problem_067.txt') as data_file:
         triangle_data = []
         for data in data_file.readlines():

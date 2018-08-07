@@ -20,19 +20,26 @@ def run(args: typ.List[typ.Any]):
             logger = logging.getLogger(f'{__name__}.{arg}')
             logger.setLevel(logging.DEBUG)
             # Setup file handler for this problem
-            handler = logging.FileHandler(f'{Path(Path.cwd(), "project_euler/logs", arg)}.log', mode='w')
-            handler.setLevel(logging.DEBUG)
+            file_handler = logging.FileHandler(f'{Path(Path.cwd(), "project_euler/logs", arg)}.log', mode='w')
+            file_handler.setLevel(logging.DEBUG)
+            # Setup stream handler for this problem
+            stream_handler = logging.StreamHandler()
+            stream_handler.setLevel(logging.INFO)
+
             # Setup formatter
             formatter = logging.Formatter('%(asctime)s : %(name)s : %(levelname)s : %(message)s')
-            handler.setFormatter(formatter)
+            file_handler.setFormatter(formatter)
+            formatter = logging.Formatter('%(message)s')
+            stream_handler.setFormatter(formatter)
             # Add the handler
-            logger.addHandler(handler)
+            logger.addHandler(file_handler)
+            logger.addHandler(stream_handler)
 
             start = time.time()
             solution = problem.solve(logger)
             elapsed = time.time() - start
-            logger.info(f'SOLUTION = {solution}')
-            logger.info(f'SOLUTION TIME = {elapsed} s')
+            logger.debug(f'SOLUTION = {solution}')
+            logger.debug(f'SOLUTION TIME = {elapsed} s')
             yield arg, solution, elapsed
 
 

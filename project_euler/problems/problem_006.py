@@ -1,4 +1,4 @@
-'''
+prompt = '''
 The sum of the squares of the first ten natural numbers is,
 12 + 22 + ... + 102 = 385
 
@@ -12,6 +12,7 @@ Find the difference between the sum of the squares of the first one hundred natu
 
 
 def solve(logger):
+    logger.debug(prompt)
     sum_of_squares = sum([x**2 for x in range(1, 101)])
     square_of_sums = sum(range(1, 101)) ** 2
 
