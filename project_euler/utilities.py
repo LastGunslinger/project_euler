@@ -7,12 +7,20 @@ def number_of_factors(number: int) -> int:
     pass
 
 
-def int_list(number: int) -> typ.List[int]:
-    return [int(x) for x in str(number)]
+def int_list(*numbers: int) -> typ.List[int]:
+    result = []
+    for number in numbers:
+        for x in str(number):
+            result.append(int(x))
+    return result
 
 
-def int_set(number: int) -> typ.Set[int]:
-    return {int(x) for x in str(number)}
+def int_set(*numbers: int) -> typ.Set[int]:
+    result = set()
+    for number in numbers:
+        for x in str(number):
+            result.add(int(x))
+    return result
 
 
 def is_prime(number: int) -> bool:

@@ -7,13 +7,16 @@ def _get_solution(problem: int):
     '''Pull the solution from the luckytoilet solution repo'''
     url = 'https://raw.githubusercontent.com/luckytoilet/projecteuler-solutions/master/Solutions.md'
     with req.get(url) as resp:
-        match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
+        if resp.status_code == 200:
+            match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
+        else:
+            raise Exception(f'Response {resp.status_code} - could not connect to checker GitHub page.')
+
         try:
             return float(match.group('solution'))
         except Exception as exc:
             print(exc)
             message = f'Solution not found for problem {problem}'
-            print(message)
             raise Exception(message)
 
 
@@ -22,5 +25,6 @@ def check_solution(problem: typ.Union[int, str], solution: int):
         problem = int(problem)
     try:
         return float(solution) == float(_get_solution(problem))
-    except Exception:
+    except Exception as exc:
+        print(exc)
         return False
