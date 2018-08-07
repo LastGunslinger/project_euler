@@ -1,4 +1,5 @@
 prompt = '''
+
 Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
 
 1634 = 1^4 + 6^4 + 3^4 + 4^4
@@ -21,13 +22,14 @@ def gen_powers(power):
             yield num
 
 
-def test_gen_powers():
-    test_data = [x for x in gen_powers(4)]
-    assert test_data == [1634, 8208, 9474]
-    assert sum(test_data) == 19316
-
-
 def solve(logger):
     logger.debug(prompt)
     power = 5
-    return sum([x for x in gen_powers(power)])
+    results = []
+    lower_bound = 2**power
+    upper_bound = (9**power) * power + 1
+    for num in range(lower_bound, upper_bound):
+        if sum([int(x)**power for x in str(num)]) == num:
+            logger.debug(f'{num} = {f"^{power} + ".join(str(num))}^{power}')
+            results.append(num)
+    return sum(x for x in results)

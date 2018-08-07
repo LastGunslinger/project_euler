@@ -1,4 +1,5 @@
 prompt = '''
+
 Euler discovered the remarkable quadratic formula:
 
 n^2+n+41

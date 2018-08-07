@@ -1,4 +1,5 @@
 prompt = '''
+
 Consider all integer combinations of a^b for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
 
 2^2=4, 2^3=8, 2^4=16, 2^5=32
