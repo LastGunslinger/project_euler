@@ -1,4 +1,5 @@
 prompt = '''
+
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
     192 × 1 = 192
@@ -11,54 +12,43 @@ The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5
 
 What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1?
 '''
-
-import time
-import utilities as utils
-from termcolor import colored
+import typing as typ
+from ..utilities import int_list, list_int
 
 
-def is_pandigital(number: int) -> bool:
-    if is_unique(number) and len(str(number)) == 9:
-        return True
+def is_pandigital(number: typ.Union[int, typ.List[int]]) -> bool:
+    if isinstance(number, int):
+        number = int_list(number)
+    if 0 in number:
+        return False
+    elif len(number) != 9:
+        return False
+    elif len(number) != len(set(number)):
+        return False
     else:
-        return False
-
-
-def is_unique(number: int) -> bool:
-    num_str = str(number)
-    if '0' in num_str:
-        return False
-    elif len(num_str) == len(set(num_str)):
         return True
-    else:
-        return False
 
 
-def concatenate_products(number: int) -> int:
-    concatenated_product = str(number)
+def concatenated_product(number: int) -> int:
+    cat_product = int_list(number)
     count = 2
-    while len(concatenated_product) < 9:
-        concatenated_product += f'{number * count}'
+    while len(cat_product) < 9:
+        cat_product += int_list(number * count)
         count += 1
-        if not is_unique(concatenated_product):
-            return None
-        elif len(concatenated_product) > 9:
-            return None
-    return int(concatenated_product)
+
+    if is_pandigital(cat_product):
+        return list_int(cat_product)
+    else:
+        return None
 
 
 def solve(logger):
     logger.debug(prompt)
     result = []
-    for x in range(555555555):
-        product = concatenate_products(x)
-        if product and is_pandigital(product):
-            print(f'Pandigital: {product}')
+    # Range only goes up to the largest pandigital 4-digit number
+    for x in range(9877):
+        product = concatenated_product(x)
+        if product:
+            logger.debug(f'Pandigital: {product}')
             result.append(product)
     return max(result)
-
-
-if __name__ == '__main__':
-    start = time.time()
-    print(f'Result: {colored(main(), "green")}')
-    print('--- {} seconds ---'.format(time.time() - start))
