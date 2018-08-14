@@ -15,8 +15,9 @@ Let d1 be the 1st digit, d2 be the 2nd digit, and so on. In this way, we note th
 
 Find the sum of all 0 to 9 pandigital numbers with this property.
 '''
-from itertools import permutations
 import typing as typ
+from itertools import permutations
+
 import project_euler.utilities as utils
 
 

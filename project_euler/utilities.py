@@ -5,8 +5,12 @@ import typing as typ
 
 def solve_quadratic(a: int, b: int, c: int):
     ''' Solve a quadratic using the quadratic formula '''
-    solution_1 = (-b + math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
-    solution_2 = (-b - math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+    try:
+        solution_1 = (-b + math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+        solution_2 = (-b - math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+    except ValueError:
+        print(f'a = {a}, b = {b}, c = {c}')
+        raise
     return solution_1, solution_2
 
 
