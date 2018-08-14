@@ -26,3 +26,7 @@ def test_list_int():
 
 def test_int_list():
     assert utils.int_list(321) == [3, 2, 1]
+
+
+def test_solve_quadratic():
+    assert utils.solve_quadratic(2, -5, -3) == (3, -0.5)

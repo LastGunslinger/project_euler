@@ -3,6 +3,13 @@ import math
 import typing as typ
 
 
+def solve_quadratic(a: int, b: int, c: int):
+    ''' Solve a quadratic using the quadratic formula '''
+    solution_1 = (-b + math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+    solution_2 = (-b - math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+    return solution_1, solution_2
+
+
 def number_of_factors(number: int) -> int:
     pass
 
@@ -25,6 +32,8 @@ def is_prime(number: int) -> bool:
     elif 2 <= number <= 3:
         return True
     elif is_even(number):
+        return False
+    elif str(number)[-1] == 5:
         return False
     for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0:

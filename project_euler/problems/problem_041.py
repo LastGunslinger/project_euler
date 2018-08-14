@@ -4,25 +4,22 @@ We shall say that an n-digit number is pandigital if it makes use of all the dig
 
 What is the largest n-digit pandigital prime that exists?
 '''
-import typing as typ
+from itertools import permutations
 
-from ..utilities import int_list, primes
-
-
-def is_pandigital(number: typ.Union[int, typ.List[int]]) -> bool:
-    if isinstance(number, int):
-        number = int_list(number)
-    if 0 in number:
-        return False
-    elif len(number) != len(set(number)):
-        return False
-    else:
-        return True
+from ..utilities import is_prime, list_int
 
 
 def solve(logger):
     logger.debug(prompt)
-    for prime in sorted(primes(987654321), reverse=True):
-        if is_pandigital(prime):
-            logger.debug(prime)
-            return prime
+    number = list(range(1, 10))
+    largest = 0
+    while len(number) >= 4:
+        for pandigital in permutations(number):
+            logger.debug(pandigital)
+            if is_prime(list_int(pandigital)) and list_int(pandigital) > largest:
+                largest = list_int(pandigital)
+                # logger.debug(pandigital)
+        if largest == 0:
+            number = number[:-1]
+        else:
+            return largest
