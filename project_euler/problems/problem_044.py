@@ -35,10 +35,8 @@ def solve(logger):
         p1 = pentagonal(n)
         for x in range(1, n):
             p2 = pentagonal(x)
-            logger.debug(f'P{n} = {p1}, P{x} = {p2}')
-            if is_pentagonal(p1 + p2) and is_pentagonal(p1 - p2):
+            # logger.debug(f'P{n} = {p1}, P{x} = {p2}')
+            if is_pentagonal(p1 - p2) and is_pentagonal(p1 + p2):
                 d = abs(p1 - p2)
                 logger.debug(f'D = {d}')
                 return d
-
-    return d
