@@ -192,6 +192,18 @@ platform = "*"
 [package.dependencies]
 six = ">=1.0.0,<2.0.0"
 [[package]]
+name = "mypy"
+version = "0.620"
+description = "Optional static typing for Python"
+category = "dev"
+optional = false
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+typing = ">=3.5.3"
+typed-ast = ">=1.1.0,<1.2.0"
+[[package]]
 name = "pluggy"
 version = "0.6.0"
 description = "plugin and hook calling mechanisms for python"
@@ -256,6 +268,30 @@ setuptools = "*"
 six = ">=1.10.0"
 py = ">=1.5.0"
 [[package]]
+name = "pytest-flake8"
+version = "1.0.2"
+description = "pytest plugin to check FLAKE8 requirements"
+category = "dev"
+optional = false
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+pytest = ">=3.5"
+flake8 = ">=3.5"
+[[package]]
+name = "pytest-mypy"
+version = "0.3.2"
+description = "Mypy static type checker plugin for Pytest"
+category = "dev"
+optional = false
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+mypy = ">=0.570,<1.0"
+pytest = ">=2.9.2"
+[[package]]
 name = "pywin32-ctypes"
 version = "0.1.2"
 description = "A (partial) reimplementation of pywin32 that is pure python (uses ctypes/cffi)."
@@ -314,6 +350,15 @@ python-versions = "*"
 platform = "UNKNOWN"
 
 [[package]]
+name = "typed-ast"
+version = "1.1.0"
+description = "a fork of Python 2 and 3 ast modules with type comment support"
+category = "dev"
+optional = false
+python-versions = "*"
+platform = "POSIX"
+
+[[package]]
 name = "urllib3"
 version = "1.23"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -325,7 +370,7 @@ platform = "*"
 [metadata]
 python-versions = "~3.6.5"
 platform = "*"
-content-hash = "bbd39e97c2037908516c4b23ccb6d5d90fb473087642ade63a2e73762edac9e3"
+content-hash = "f9f56b22d815525be0b41ec1c5a6f858b182ea135cc69dda8cd03c9e41d14f75"
 
 [metadata.hashes]
 asn1crypto = [ "2f1adbb7546ed199e3c90ef23ec95c5cf3585bac7d11fb7eb562a3fe89c64e87", "9d5c20441baf0cb60a4ac34cc447c6c189024b6b4c6cd7877034f4965c464e49",]
@@ -346,15 +391,19 @@ jeepney = [ "e7b961fe9dfa1ed4c576d3bb2d70a9276dace0e16ebed9da09e4d288fe1d3b2a", 
 keyring = [ "6e01954fd3e404820e1fade262ee661974051551ed08c899ffc5e88bb9df288e", "6364bb8c233f28538df4928576f4e051229e0451651073ab20b315488da16a58",]
 mccabe = [ "ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", "dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f",]
 more-itertools = [ "a18d870ef2ffca2b8463c0070ad17b5978056f403fb64e3f15fe62a52db21cc0", "6703844a52d3588f951883005efcf555e49566a48afd4db4e965d69b883980d3", "2b6b9893337bfd9166bee6a62c2b0c9fe7735dcf85948b387ec8cba30e85d8e8",]
+mypy = [ "673ea75fb750289b7d1da1331c125dc62fc1c3a8db9129bb372ae7b7d5bf300a", "c770605a579fdd4a014e9f0a34b6c7a36ce69b08100ff728e96e27445cef3b3c",]
 pluggy = [ "d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c", "e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5", "7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff",]
 py = [ "e31fb2767eb657cbde86c454f02e99cb846d3cd9d61b318525140214fdc0e98e", "3fd59af7435864e1a243790d322d763925431213b6b8529c6ca71081ace3bbf7",]
 pycodestyle = [ "6c4245ade1edfad79c3446fadfc96b0de2759662dc29d07d80a6f27ad1ca6ba9", "682256a5b318149ca0d2a9185d365d8864a768a28db66a84a2ea946bcc426766",]
 pycparser = [ "99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226",]
 pyflakes = [ "08bd6a50edf8cffa9fa09a463063c425ecaaf10d1eb0335a7e8b1401aef89e6f", "8d616a382f243dbf19b54743f280b80198be0bca3a5396f1d2e1fca6223e8805",]
 pytest = [ "4b208614ae6d98195430ad6bde03641c78553acee7c83cec2e85d613c0cd383d", "0453c8676c2bee6feb0434748b068d5510273a916295fd61d306c4f22fbfd752",]
+pytest-flake8 = [ "4f30f5be3efb89755f38f11bdb2a5e22d19a6f5faa73428f703a3292a9572cd3", "c740ad6aa19e3958947d2118f70bed218caf1d2097039fb7318573a2a72f89a1",]
+pytest-mypy = [ "8f6436eed8118afd6c10a82b3b60fb537336736b0fd7a29262a656ac42ce01ac", "acc653210e7d8d5c72845a5248f00fd33f4f3379ca13fe56cfc7b749b5655c3e",]
 pywin32-ctypes = [ "4820b830f42e6889d34142bcd07b3896018c3620d8c31f5e13b72caf1f4d1d0f",]
 requests = [ "63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1", "ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a",]
 secretstorage = [ "1bbf5b85a718854916d1c151fa33e6f667e3c005e033ea46d4123384d233b137", "819087ca89c0d6c5711692f41fb26f786af9dcc5bb89d567722a66edfbb2a689",]
 six = [ "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb", "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9",]
 termcolor = [ "1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b",]
+typed-ast = [ "0948004fa228ae071054f5208840a1e88747a357ec1101c17217bfe99b299d58", "25d8feefe27eb0303b73545416b13d108c6067b846b543738a25ff304824ed9a", "c05b41bc1deade9f90ddc5d988fe506208019ebba9f2578c622516fd201f5863", "519425deca5c2b2bdac49f77b2c5625781abbaf9a809d727d3a5596b30bb4ded", "6de012d2b166fe7a4cdf505eee3aaa12192f7ba365beeefaca4ec10e31241a85", "79b91ebe5a28d349b6d0d323023350133e927b4de5b651a8aa2db69c761420c6", "a8034021801bc0440f2e027c354b4eafd95891b573e12ff0418dec385c76785c", "f19f2a4f547505fe9072e15f6f4ae714af51b5a681a97f187971f50c283193b6", "c9b060bd1e5a26ab6e8267fd46fc9e02b54eb15fffb16d112d4c7b1c12987559", "2e214b72168ea0275efd6c884b114ab42e316de3ffa125b267e732ed2abda892", "bc978ac17468fe868ee589c795d06777f75496b1ed576d308002c8a5756fb9ea", "edb04bdd45bfd76c8292c4d9654568efaedf76fe78eb246dde69bdb13b2dad87", "668d0cec391d9aed1c6a388b0d5b97cd22e6073eaa5fbaa6d2946603b4871efe", "29464a177d56e4e055b5f7b629935af7f49c196be47528cc94e0a7bf83fbc2b9", "8550177fa5d4c1f09b5e5f524411c44633c80ec69b24e0e98906dd761941ca46", "3e0d5e48e3a23e9a4d1a9f698e32a542a4a288c871d33ed8df1b092a40f3a0f9", "68ba70684990f59497680ff90d18e756a47bf4863c604098f10de9716b2c0bdd", "898f818399cafcdb93cbbe15fc83a33d05f18e29fb498ddc09b0214cdfc7cd51", "1f6c4bd0bdc0f14246fd41262df7dfc018d65bb05f6e16390b7ea26ca454a291", "a26863198902cda15ab4503991e8cf1ca874219e0118cbf07c126bce7c4db129", "94b091dc0f19291adcb279a108f5d38de2430411068b219f41b343c03b28fb1f", "10703d3cec8dcd9eef5a630a04056bbc898abc19bac5691612acba7d1325b66d", "57fe287f0cdd9ceaf69e7b71a2e94a24b5d268b35df251a88fef5cc241bf73aa",]
 urllib3 = [ "b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5", "a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf",]
