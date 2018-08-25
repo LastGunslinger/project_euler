@@ -3,16 +3,31 @@ import math
 import typing as typ
 
 
+def solve_quadratic(a: int, b: int, c: int):
+    ''' Solve a quadratic using the quadratic formula '''
+    try:
+        solution_1 = (-b + math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+        solution_2 = (-b - math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
+    except ValueError:
+        print(f'a = {a}, b = {b}, c = {c}')
+        raise
+    return solution_1, solution_2
+
+
 def number_of_factors(number: int) -> int:
     pass
 
 
-def int_list(number: int) -> typ.List[int]:
-    return [int(x) for x in str(number)]
+def list_int(integer_list: typ.List[int]) -> int:
+    return sum(x * (10 ** index) for index, x in enumerate(integer_list[::-1]))
 
 
-def int_set(number: int) -> typ.Set[int]:
-    return {int(x) for x in str(number)}
+def int_list(*numbers: int) -> typ.List[int]:
+    return [int(x) for number in numbers for x in str(number)]
+
+
+def int_set(*numbers: int) -> typ.Set[int]:
+    return {int(x) for number in numbers for x in str(number)}
 
 
 def is_prime(number: int) -> bool:
@@ -20,11 +35,26 @@ def is_prime(number: int) -> bool:
         return False
     elif 2 <= number <= 3:
         return True
-    for x in range(2, int(math.sqrt(number)) + 1):
+    elif is_even(number):
+        return False
+    elif str(number)[-1] == 5:
+        return False
+    for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0:
             return False
     else:
         return True
+
+
+def is_odd(number: int) -> bool:
+    if number % 2:
+        return True
+    else:
+        return False
+
+
+def is_even(number: int) -> bool:
+    return not is_odd(number)
 
 
 def primes(stop: int=50000):

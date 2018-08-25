@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
 
 We shall consider fractions like, 30/50 = 3/5, to be trivial examples.
@@ -14,10 +15,8 @@ Things to keep in mind:
 '''
 
 import fractions
-import time
 from functools import reduce
 from typing import Tuple
-import pytest
 
 
 def fraction_reduce(num: int, denom: int) -> Tuple[int]:
@@ -46,24 +45,20 @@ def generate_fractions():
             yield numerator, denominator
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     naive_fractions = []
     for num, denom in generate_fractions():
         reduced = fraction_reduce(num, denom)
         naive_reduced = naive_fraction_reduce(num, denom)
         if reduced == naive_reduced and reduced != (num, denom):
-            print(f'{num} / {denom}')
+            logger.debug(f'Naive fraction: {num} / {denom}')
             naive_fractions.append((num, denom))
     assert len(naive_fractions) == 4
 
     num_product = reduce(lambda x, y: x * y, [x[0] for x in naive_fractions])
     denom_product = reduce(lambda x, y: x * y, [x[1] for x in naive_fractions])
+    logger.debug(f'Product Fraction: {int(num_product)} / {int(denom_product)}')
     product_fraction = fraction_reduce(num_product, denom_product)
-    print(f'Product Fraction: {product_fraction[1]} / {product_fraction[1]}')
-    return product_fraction[1]
-
-
-if __name__ == '__main__':
-    start = time.time()
-    print(f'Result: {main()}')
-    print('--- {} seconds ---'.format(time.time() - start))
+    logger.debug(f'Reduced Product Fraction: {int(product_fraction[0])} / {int(product_fraction[1])}')
+    return int(product_fraction[1])

@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
 
 1/2	 = 	0.5
@@ -14,94 +15,78 @@ Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be see
 
 Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 '''
-import time
-import pytest
 import re
-import math
-from ..utilities import is_prime, int_list
 import typing as typ
-import re
+
+from ..utilities import int_list
 
 
-def solve():
-    # assert divide(1, 7) == 1
-    # assert divide(1, 11) == 2
+def solve(logger):
+    logger.debug(prompt)
     limit = 1000
     longest_recurring = 2
     recurring_length = 1
     for number in range(2, limit):
-        q = []
-        for x in divide(1, number):
-            q.append(x)
-            new_len = pattern_len(q, min_len=recurring_length)
-            if new_len == 0:
-                continue
-            elif new_len > recurring_length:
+        q, new_len = repeats(1, number)
+        print(f'1 / {number} : {new_len} : {q}')
+        if new_len > recurring_length:
+            print(f'1 / {number} : {new_len} : {q}')
+            if new_len > recurring_length:
                 recurring_length = new_len
                 longest_recurring = number
-            break
-        print(f'1 / {number} : {new_len} : {q}')
 
     print(f'1 / {longest_recurring} : {recurring_length}')
     return longest_recurring
 
 
-    for x in range(1, limit):
-        q, length = long_divide(1, x)
-        if length > recurring_length:
-            recurring_length = length
-            longest_recurring = x
-            print(f'1 / {x} : {recurring_length}')
-    return longest_recurring
+def repeats(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
+    if isinstance(dividend, int):
+        dividend = int_list(dividend)
 
+    quotient = []
+    while not (dividend[0] == 0 and len(dividend) == 1):
+        if divisor > dividend[0] and len(dividend) > 1:
+            dividend[0] = int(str(dividend[0]) + str(dividend.pop(1)))
+            quotient.append(0)
+            # yield from divide(dividend, divisor)
+        elif divisor > dividend[0] and len(dividend) == 1:
+            dividend[0] *= 10
+            quotient.append(0)
+            # yield from divide(dividend, divisor)
+        else:
+            q = int(dividend[0] / divisor)
+            remainder = dividend[0] % divisor
+            dividend[0] = remainder
+            if len(dividend) == 1 and dividend[0] != 0:
+                dividend[0] *= 10
+            quotient.append(q)
+            # yield from divide(dividend, divisor)
 
-def long_divide(dividend, divisor):
-    pattern = re.compile(r'(\d+)\1{3,}', re.IGNORECASE)
-    quotient = ''
-    remainder = 1
-    while remainder != 0:
-        quotient += str(int(dividend / divisor))
-        if quotient == '0':
-            quotient += '.'
-        remainder = dividend % divisor
-        dividend = remainder * 10
-        match = pattern.search(quotient)
-        if match and quotient[-1] != '0':
-            quotient = re.sub(r'{}+'.format(match.group()), r'({})'.format(match.group(1)), quotient)
-            # print(match.group(1))
-            return quotient, len(match.group(1))
+        if len(quotient) > divisor * 2:
+            pattern = find_pattern(quotient)
+            return pattern, len(pattern) if pattern else 0
+
     return quotient, 0
 
 
-def divide(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
-    if isinstance(dividend, int):
-        dividend = int_list(dividend)
-    if dividend[0] == 0 and len(dividend) == 1:
-        raise StopIteration
-    elif divisor > dividend[0] and len(dividend) > 1:
-        dividend[0] = int(str(dividend[0]) + str(dividend.pop(1)))
-        yield 0
-        yield from divide(dividend, divisor)
-    elif divisor > dividend[0] and len(dividend) == 1:
-        dividend[0] *= 10
-        yield 0
-        yield from divide(dividend, divisor)
-    else:
-        q = int(dividend[0] / divisor)
-        remainder = dividend[0] % divisor
-        dividend[0] = remainder
-        if len(dividend) == 1 and dividend[0] != 0:
-            dividend[0] *= 10
-        yield q
-        yield from divide(dividend, divisor)
+def find_pattern(seq: typ.List[int], min_len: int=1) -> int:
+    seq = seq.copy()
 
-
-def pattern_len(seq: typ.List[int], min_len: int=1) -> int:
     seq = ''.join([str(x) for x in seq])
     seq = re.sub(r'\A0+', '', seq, count=1)
-    # print(seq)
-    match = re.match(fr'\d*(?P<repeat>\d+)\1', seq)
+    match = re.search(r'(?P<repeat>\d+)\1+', seq)
     if match:
-        return len(match.group('repeat'))
+        repeating_group = [int(x) for x in match.group('repeat')]
+        for rotation in range(1, len(repeating_group) + 1):
+            rotated_group = rotate(repeating_group, rotation)
+            # print(rotated_group)
+            if rotated_group == repeating_group:
+                return repeating_group[:rotation]
+        else:
+            return repeating_group
     else:
-        return 0
+        return None
+
+
+def rotate(lst: typ.Iterable, n: int=1) -> typ.Iterable:
+    return lst[-(n % len(lst)):] + lst[:-(n % len(lst))]

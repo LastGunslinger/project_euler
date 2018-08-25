@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 
 73167176531330624919225119674426574742355349194934
@@ -29,7 +30,8 @@ from functools import reduce
 from ..utilities import int_list
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     raw_num = '''
     73167176531330624919225119674426574742355349194934
     96983520312774506326239578318016984801869478851843

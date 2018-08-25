@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 a2 + b2 = c2
 
@@ -9,7 +10,8 @@ Find the product abc.
 '''
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     a = 1
     b = a + 1
     while a < b:

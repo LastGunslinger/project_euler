@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 The Fibonacci sequence is defined by the recurrence relation:
 
 Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
@@ -23,7 +24,8 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 from ..utilities import fibonacci
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     limit = 1000
     for index, fib in enumerate(fibonacci(), start=1):
         if len(str(fib)) >= limit:

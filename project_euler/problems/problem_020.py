@@ -1,4 +1,5 @@
-'''
+prompt = '''
+
 n! means n × (n − 1) × ... × 3 × 2 × 1
 
 For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
@@ -10,5 +11,6 @@ from ..utilities import int_list
 from math import factorial
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     return sum(int_list(factorial(100)))

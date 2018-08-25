@@ -1,4 +1,4 @@
-'''
+prompt = '''
 
 By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
 
@@ -33,7 +33,8 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
 from typing import List
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     data = '''
         75
         95 64

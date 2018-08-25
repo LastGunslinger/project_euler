@@ -1,4 +1,4 @@
-'''
+prompt = '''
 
 If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
@@ -10,7 +10,8 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 import re
 
 
-def solve():
+def solve(logger):
+    logger.debug(prompt)
     longform = {
         '0': '',
         '00': '',

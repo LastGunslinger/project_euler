@@ -1,53 +1,68 @@
-import time
-import pytest
-import math
+prompt = '''
 
-def quadratic(x, a, b):
-	return sum([x**2, a*x, b])
+Euler discovered the remarkable quadratic formula:
 
-def test_Quadratic():
-	assert quadratic(3, -79, 1601) == 1373
+n^2+n+41
 
-def is_prime(number):
-	if number < 2:
-		return False
-	elif number == 2:
-		return True
-	else:
-		for x in range(2, math.ceil(math.sqrt(number) + 1 )):
-			if number % x == 0:
-				return False
-		return True
+It turns out that the formula will produce 40 primes for the consecutive integer values 0≤n≤39
+. However, when n=40,40^2+40+41=40(40+1)+41 is divisible by 41, and certainly when n=41,41^2+41+41
 
-def test_is_prime():
-	assert is_prime(2) == True
-	assert is_prime(3) == True
-	assert is_prime(18) == False
-	assert is_prime(27) == False
+is clearly divisible by 41.
 
-def solve(a_limit, b_limit):
-	prime_count = 0
-	coeffs = (None, None)
-	for a in range(-a_limit + 1, a_limit):
-		for b in range(-b_limit, b_limit + 1):
-			x = 0
-			q = quadratic(x, a, b)
-			primes = []
-			while( is_prime(q) ):
-				primes.append(q)
-				x += 1
-				q = quadratic(x, a, b)
-			if len(primes) > prime_count:
-				prime_count = len(primes)
-				coeffs = (a, b)
-				print(f'x^2 + ({a})x + ({b}) = {primes}')
-	return coeffs, prime_count
+The incredible formula n^2−79n+1601
+was discovered, which produces 80 primes for the consecutive values 0≤n≤79
 
-def test_main():
-	coeffs, prime_count = main(10, 10)
-	print(coeffs, prime_count)
+. The product of the coefficients, −79 and 1601, is −126479.
 
-if __name__ == '__main__':
-	start = time.time()
-	print(main(1000, 1000))
-	print('--- {} seconds ---'.format(time.time()-start))
+Considering quadratics of the form:
+
+    n^2+an+b
+
+, where |a|<1000 and |b|≤1000
+
+where |n|
+is the modulus/absolute value of n
+e.g. |11|=11 and |−4|=4
+
+Find the product of the coefficients, a
+and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
+
+##### Assumptions #####
+1. Consecutive primes are always counted starting from n = 0
+2. Assuming point 1 is true, when n = 0, b must be a prime number
+3. Assuming point 2 is true, b can never be negative
+4. When n = 1, a must be an odd number if b is odd
+
+'''
+from ..utilities import is_prime, primes
+from itertools import count
+
+
+def quadratic(n, a, b):
+    return (n ** 2) + (a * n) + b
+
+
+def gen_solutions(a: int, b: int):
+    for n in count(start=0):
+        yield quadratic(n, a, b)
+
+
+def solve(logger):
+    logger.debug(prompt)
+    limit = 1000
+    prime_sieve = list(primes(limit + 1))
+    a_range = range(-(limit - 1), limit, 2)
+    b_range = prime_sieve
+    max_prime_count = 0
+    coeffs = (None, None)
+    for a in a_range:
+        for b in b_range:
+            n = 0
+            while is_prime(quadratic(n, a, b)):
+                n += 1
+
+            if n > max_prime_count:
+                print(f'x^2 + ({a})x + ({b}) returns {n} primes')
+                max_prime_count = n
+                coeffs = (a, b)
+    return int(coeffs[0] * coeffs[1])

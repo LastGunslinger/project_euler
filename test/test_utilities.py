@@ -18,3 +18,15 @@ def test_divides():
 
 def test_prime_factors():
     assert set(utils.prime_factors(24)) == set([(2, 3), (3, 1)])
+
+
+def test_list_int():
+    assert utils.list_int([3, 2, 1]) == 321
+
+
+def test_int_list():
+    assert utils.int_list(321) == [3, 2, 1]
+
+
+def test_solve_quadratic():
+    assert utils.solve_quadratic(2, -5, -3) == (3, -0.5)
