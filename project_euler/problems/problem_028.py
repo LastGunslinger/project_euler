@@ -15,35 +15,25 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 
 
 class Matrix:
-    def __init__(self, rows, columns):
+    def __init__(self, rows: int, columns: int) -> None:
         self.matrix = [[0 for _ in range(columns)] for _ in range(rows)]
         self.center = int(rows / 2), int(columns / 2)
         self.size = len(self.matrix)
 
-    def get_coordinate(self, x, y):
+    def get_coordinate(self, x: int, y: int) -> int:
         return self.matrix[x][y]
 
-    def set_coordinate(self, x, y, value):
+    def set_coordinate(self, x: int, y: int, value: int) -> None:
         self.matrix[x][y] = value
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         print_str = ''
         for row in self.matrix:
             print_str += row.__repr__() + '\n'
         return print_str
 
 
-def create_matrix(rows, columns):
-    return [[0 for _ in range(columns)] for _ in range(rows)]
-
-
-def test_create_matrix():
-    matrix = create_matrix(5, 5)
-    for row in matrix:
-        print(row)
-
-
-def paint_box(matrix):
+def paint_box(matrix: Matrix) -> Matrix:
     box_size = 3
     count = 1
     x, y = matrix.center
@@ -72,25 +62,25 @@ def paint_box(matrix):
     return matrix
 
 
-def test_paint_box():
+def test_paint_box() -> None:
     print()
     matrix = Matrix(5, 5)
     print(paint_box(matrix))
 
 
-def sum_diagonals(matrix):
+def sum_diagonals(matrix: Matrix) -> int:
     diagonal = {matrix.matrix[x][y] for x in range(matrix.size) for y in range(
         matrix.size) if (x == y or x + y == matrix.size - 1)}
     return sum(diagonal)
 
 
-def test_sum_diagonals():
+def test_sum_diagonals() -> None:
     matrix = Matrix(5, 5)
     matrix = paint_box(matrix)
     print(sum_diagonals(matrix))
 
 
-def solve(logger):
+def solve(logger) -> int:
     logger.debug(prompt)
     size = 1001
     mtx = Matrix(size, size)

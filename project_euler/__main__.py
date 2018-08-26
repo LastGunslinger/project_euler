@@ -36,7 +36,7 @@ def run(args: typ.List[typ.Any]):
             logger.addHandler(stream_handler)
 
             start = time.time()
-            solution = problem.solve(logger)  # type: ignore
+            solution = problem.solve(logger)
             elapsed = time.time() - start
             logger.debug(f'SOLUTION = {solution}')
             logger.debug(f'SOLUTION TIME = {elapsed} s')

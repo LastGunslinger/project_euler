@@ -1,3 +1,4 @@
 {
-  "test/test_utilities.py::test_factors": true
+  "project_euler/problems/problem_026.py": true,
+  "test/test_checker.py": true
 }
