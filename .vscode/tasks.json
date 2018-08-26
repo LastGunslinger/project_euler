@@ -37,7 +37,7 @@
 			"taskName": "Test",
 			"isTestCommand": true,
 			"suppressTaskName": true,
-			"args": ["poetry run pytest -s -vvv ${file}"],
+			"args": ["poetry run pytest --mypy --flake8 -s -vvv ${file}"],
 			"problemMatcher": []
 		}
 	]

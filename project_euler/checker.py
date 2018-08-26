@@ -12,10 +12,9 @@ def _get_solution(problem: int):
         else:
             raise Exception(f'Response {resp.status_code} - could not connect to checker GitHub page.')
 
-        try:
+        if match:
             return float(match.group('solution'))
-        except Exception as exc:
-            print(exc)
+        else:
             message = f'Solution not found for problem {problem}'
             raise Exception(message)
 

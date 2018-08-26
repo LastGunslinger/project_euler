@@ -39,7 +39,7 @@ def solve(logger: Logger) -> int:
     logger.debug(prompt)
     # Mathematically, pandigitals can be created with 2 * 3 digit numbers or 1 * 4 digit numbers.
     # This reduces the range of numbers I need to look for.
-    
+
     # First, find all 2 digit non-repeating numbers with no zero
     pandigital_products = set()
     a_numbers = range(1, 988)

@@ -7,8 +7,6 @@ Find the sum of the only eleven primes that are both truncatable from left to ri
 Note: 2, 3, 5, and 7 are not considered to be truncatable primes.
 '''
 from ..utilities import primes
-import typing as typ
-
 
 prime_set = set()
 

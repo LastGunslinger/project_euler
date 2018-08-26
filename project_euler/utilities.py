@@ -1,9 +1,9 @@
 import itertools
 import math
-import typing as typ
+from typing import Dict, Tuple, List, Set, Iterable, Optional
 
 
-def solve_quadratic(a: int, b: int, c: int):
+def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
     ''' Solve a quadratic using the quadratic formula '''
     try:
         solution_1 = (-b + math.sqrt(math.pow(b, 2) - (4 * a * c))) / (2 * a)
@@ -15,18 +15,18 @@ def solve_quadratic(a: int, b: int, c: int):
 
 
 def number_of_factors(number: int) -> int:
-    pass
+    return 0
 
 
-def list_int(integer_list: typ.List[int]) -> int:
+def list_int(integer_list: List[int]) -> int:
     return sum(x * (10 ** index) for index, x in enumerate(integer_list[::-1]))
 
 
-def int_list(*numbers: int) -> typ.List[int]:
+def int_list(*numbers: int) -> List[int]:
     return [int(x) for number in numbers for x in str(number)]
 
 
-def int_set(*numbers: int) -> typ.Set[int]:
+def int_set(*numbers: int) -> Set[int]:
     return {int(x) for number in numbers for x in str(number)}
 
 
@@ -57,21 +57,21 @@ def is_even(number: int) -> bool:
     return not is_odd(number)
 
 
-def primes(stop: int=50000):
+def primes(stop: int=50000) -> Iterable[int]:
     yield from sieve_of_eratosthenes(stop)
 
 
-def factors(number: int, proper: bool=False) -> int:
-    divisors = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
-    divisors = set(divisors)
-    complements = map(lambda x: int(number / x), divisors)
-    complements = set(complements)
-    all_factors = sorted(divisors.union(complements))
+def factors(number: int, proper: bool=False) -> Iterable[int]:
+    divisors: Iterable[int] = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
+    divisor_set: Set[int] = set(divisors)
+    complements = map(lambda x: int(number / x), divisor_set)
+    complement_set: Set[int] = set(complements)
+    all_factors = sorted(divisor_set.union(complement_set))
 
     yield from (x for x in all_factors if x != number and proper)
 
 
-def prime_factors(number: int) -> int:
+def prime_factors(number: int) -> List[Tuple[int, int]]:
     factors = [] if number % 2 else [2]
     for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0 and is_prime(x):
@@ -79,18 +79,18 @@ def prime_factors(number: int) -> int:
     return _divides(number, factors)
 
 
-def _divides(number: int, prime_divisors: typ.List[int]):
+def _divides(number: int, prime_divisors: List[int]) -> List[Tuple[int, int]]:
     result = []
     for divisor in sorted(prime_divisors, reverse=True):
         count = 0
         while number % divisor == 0:
-            number /= divisor
+            number = int(number / divisor)
             count += 1
         result.append((divisor, count))
     return result
 
 
-def fibonacci(n: int=0, stop: int=0) -> int:
+def fibonacci(n: int=0, stop: int=0) -> Iterable[int]:
     '''
     Return the nth number in the Fibonacci sequence.
     If no n is given, count indefinitely
@@ -114,8 +114,8 @@ def fibonacci(n: int=0, stop: int=0) -> int:
             n1, n2 = n2, fib_sum
 
 
-def sieve_of_eratosthenes(limit: int=1000000):
-    sieve = {x: None for x in range(2, limit + 1)}
+def sieve_of_eratosthenes(limit: int=1000000) -> Iterable[int]:
+    sieve: Dict[int, Optional[bool]] = {x: None for x in range(2, limit + 1)}
     p_value = 2
 
     while p_value in sieve:
