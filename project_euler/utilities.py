@@ -57,11 +57,11 @@ def is_even(number: int) -> bool:
     return not is_odd(number)
 
 
-def primes(stop: int=50000) -> Iterable[int]:
+def primes(stop: int = 50000) -> Iterable[int]:
     yield from sieve_of_eratosthenes(stop)
 
 
-def factors(number: int, proper: bool=False) -> Iterable[int]:
+def factors(number: int, proper: bool = False) -> Iterable[int]:
     divisors: Iterable[int] = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
     divisor_set: Set[int] = set(divisors)
     complements = map(lambda x: int(number / x), divisor_set)
@@ -90,7 +90,7 @@ def _divides(number: int, prime_divisors: List[int]) -> List[Tuple[int, int]]:
     return result
 
 
-def fibonacci(n: int=0, stop: int=0) -> Iterable[int]:
+def fibonacci(n: int = 0, stop: int = 0) -> Iterable[int]:
     '''
     Return the nth number in the Fibonacci sequence.
     If no n is given, count indefinitely
@@ -114,7 +114,7 @@ def fibonacci(n: int=0, stop: int=0) -> Iterable[int]:
             n1, n2 = n2, fib_sum
 
 
-def sieve_of_eratosthenes(limit: int=1000000) -> Iterable[int]:
+def sieve_of_eratosthenes(limit: int = 1000000) -> Iterable[int]:
     sieve: Dict[int, Optional[bool]] = {x: None for x in range(2, limit + 1)}
     p_value = 2
 
