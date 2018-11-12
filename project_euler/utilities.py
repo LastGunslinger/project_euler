@@ -1,6 +1,8 @@
 import itertools
 import math
-from typing import Dict, Tuple, List, Set, Iterable, Optional
+import multiprocessing
+from typing import Dict, Tuple, List, Set, Iterable, Optional, Union
+from collections import defaultdict
 
 
 def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
@@ -71,23 +73,44 @@ def factors(number: int, proper: bool = False) -> Iterable[int]:
     yield from (x for x in all_factors if x != number and proper)
 
 
-def prime_factors(number: int) -> List[Tuple[int, int]]:
+def prime_factors(number: int, exponents: bool = True) -> Dict[int, int]:
+    if is_prime(number):
+        return {number: 1}
+
+    prime_factors = {} if is_odd(number) else {2: 0}
+
+    prime_factors.update({x: 0 for x in range(3, int(number / 2), 2) if number % x == 0 and is_prime(x)})
+    # return _divides(number, prime_factors) if exponents else prime_factors
+
+    if exponents:
+        for divisor in sorted(prime_factors.keys(), reverse=True):
+            while number % divisor == 0:
+                prime_factors[divisor] += 1
+                number /= divisor
+
+    return prime_factors
+
+        
+    '''
     factors = [] if number % 2 else [2]
-    for x in range(3, int(math.sqrt(number)) + 1, 2):
-        if number % x == 0 and is_prime(x):
-            factors.append(x)
-    return _divides(number, factors)
+    factors += [x for x in range(3, int(number / 2), 2) if not number % x]
+    with multiprocessing.Pool() as pool:
+        prime_check = pool.map(is_prime, factors)
+        print(type(prime_check))
+    p_factors = [x for i, x in enumerate(factors) if prime_check[i]]
+    print(p_factors)
+    # p_factors = [x for x in factors if is_prime(x)]
+    return _divides(number, p_factors) if exponents else p_factors
+    '''
 
 
-def _divides(number: int, prime_divisors: List[int]) -> List[Tuple[int, int]]:
+def _divides(number: int, prime_divisors: Dict[int, int]) -> Dict[int, int]:
     result = []
-    for divisor in sorted(prime_divisors, reverse=True):
-        count = 0
+    for divisor in sorted(prime_divisors.keys(), reverse=True):
         while number % divisor == 0:
-            number = int(number / divisor)
-            count += 1
-        result.append((divisor, count))
-    return result
+            prime_divisors[divisor] += 1
+            number /= divisor
+    return prime_divisors
 
 
 def fibonacci(n: int = 0, stop: int = 0) -> Iterable[int]:
