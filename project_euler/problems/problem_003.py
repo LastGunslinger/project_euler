@@ -10,8 +10,6 @@ from ..utilities import prime_factors
 def solve(logger):
     logger.debug(prompt)
     number = 600851475143
-    # prime_factors = [x for x in gen_prime_factors(number)]
-    # print(sorted(prime_factors(number)))
-    factors = [x[0] for x in prime_factors(number)]
+    factors = [x for x in prime_factors(number, exponents=False).keys()]
     print(sorted(factors))
     return max(factors)

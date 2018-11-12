@@ -28,14 +28,14 @@ def solve(logger):
     logger.debug(prompt)
     start = 1000
     for triangle in triangles(start):
-        p_factors = prime_factors(triangle)
+        p_factors = prime_factors(triangle).keys()
         all_factors = reduce(lambda x, y: x * y, [x[1] + 1 for x in p_factors])
         print(f'{triangle} has {all_factors} factors')
         if all_factors > 500:
             return triangle
 
 
-def triangles(start: int=1):
+def triangles(start: int = 1):
     result = sum(x for x in range(1, start + 1))
     yield result
     for x in count(start + 1):

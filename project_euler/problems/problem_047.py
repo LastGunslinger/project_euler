@@ -22,12 +22,12 @@ from project_euler.utilities import prime_factors
 
 def solve(logger: Logger) -> int:
     logger.debug(prompt)
-    number = 646 + 1
+    start = 646 + 1
     factor_length = 4
     consecutive_target = 4
     result = []
 
-    for _ in count():
+    for number in count(start):
         factors = prime_factors(number, exponents=False)
         if len(factors) == factor_length:
             result.append(number)
