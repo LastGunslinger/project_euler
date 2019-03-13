@@ -17,7 +17,16 @@ def test_divides():
 
 
 def test_prime_factors():
-    assert set(utils.prime_factors(24)) == set([(2, 3), (3, 1)])
+    assert utils.prime_factors(644) == {
+        2: 2,
+        7: 1,
+        23: 1
+    }
+    assert utils.prime_factors(645) == {
+        3: 1,
+        5: 1,
+        43: 1
+    }
 
 
 def test_list_int():
