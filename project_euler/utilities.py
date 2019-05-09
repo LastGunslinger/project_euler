@@ -63,18 +63,6 @@ def primes(stop: int = 50000) -> Iterable[int]:
     yield from sieve_of_eratosthenes(stop)
 
 
-'''
-def factors(number: int, proper: bool = False) -> Iterable[int]:
-    divisors: Iterable[int] = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
-    divisor_set: Set[int] = set(divisors)
-    complements = map(lambda x: int(number / x), divisor_set)
-    complement_set: Set[int] = set(complements)
-    all_factors = sorted(divisor_set.union(complement_set))
-
-    yield from (x for x in all_factors if x != number and proper)
-'''
-
-
 def factors(number: int, proper: bool = False):
     for divisor in range(1, math.floor(math.sqrt(number)) + 1):
         if number % divisor == 0:
