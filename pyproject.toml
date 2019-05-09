@@ -10,6 +10,8 @@ python = "^3.7.0"
 termcolor = "^1.1"
 requests = "^2.19"
 keyring = "^13.2"
+tqdm = "^4.31"
+loguru = "^0.2.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.5"

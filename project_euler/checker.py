@@ -1,6 +1,7 @@
 import requests as req
 import re
 import typing as typ
+from loguru import logger
 
 
 def _get_solution(problem: int):
@@ -25,5 +26,5 @@ def check_solution(problem: typ.Union[int, str], solution: int):
     try:
         return float(solution) == float(_get_solution(problem))
     except Exception as exc:
-        print(exc)
+        logger.error(exc)
         return False

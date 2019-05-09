@@ -113,28 +113,22 @@ def _divides(number: int, prime_divisors: Dict[int, int]) -> Dict[int, int]:
     return prime_divisors
 
 
-def fibonacci(n: int = 0, stop: int = 0) -> Iterable[int]:
+def fibonacci(iterations: int = 0, limit: int = 0) -> Iterable[int]:
     '''
     Return the nth number in the Fibonacci sequence.
     If no n is given, count indefinitely
     '''
-    n1, n2 = 1, 1
-    yield n1
-    if n and n == 1:
-        raise StopIteration
-    yield n2
-    if n and n == 2:
-        raise StopIteration
+    n1, n2 = 0, 1
 
-    for x in itertools.count(2):
-        if n and x >= n:
-            raise StopIteration
-        else:
-            fib_sum = n1 + n2
-            if stop and fib_sum >= stop:
-                raise StopIteration
-            yield fib_sum
-            n1, n2 = n2, fib_sum
+    for x in itertools.count(1):
+        n3 = n1 + n2
+        yield n3
+        n1 = n2
+        n2 = n3
+        if iterations and x == iterations:
+            break
+        if limit and n3 >= limit:
+            break
 
 
 def sieve_of_eratosthenes(limit: int = 1000000) -> Iterable[int]:

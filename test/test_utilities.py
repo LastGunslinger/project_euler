@@ -1,6 +1,10 @@
 import project_euler.utilities as utils
 
 
+def test_fibonacci():
+    assert list(utils.fibonacci(10)) == [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+
 def test_sieve_of_erastosthenes():
     assert list(utils.sieve_of_eratosthenes(10)) == [2, 3, 5, 7]
 
