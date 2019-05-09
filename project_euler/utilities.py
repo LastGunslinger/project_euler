@@ -16,10 +16,6 @@ def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
     return solution_1, solution_2
 
 
-def number_of_factors(number: int) -> int:
-    return 0
-
-
 def list_int(integer_list: List[int]) -> int:
     return sum(x * (10 ** index) for index, x in enumerate(integer_list[::-1]))
 
@@ -63,7 +59,7 @@ def primes(stop: int = 50000) -> Iterable[int]:
     yield from sieve_of_eratosthenes(stop)
 
 
-def factors(number: int, proper: bool = False):
+def factors(number: int) -> Iterable[int]:
     for divisor in range(1, math.floor(math.sqrt(number)) + 1):
         if number % divisor == 0:
             yield divisor
