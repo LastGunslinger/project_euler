@@ -10,10 +10,10 @@ def test_sieve_of_erastosthenes():
 
 
 def test_factors():
-    assert list(utils.factors(28)) == [1, 2, 4, 7, 14, 28]
-    assert list(utils.factors(28, prime=True)) == [2, 7]
-    assert list(utils.factors(9)) == [1, 3, 9]
-    assert list(utils.factors(9, prime=True)) == [3]
+    assert sorted(utils.factors(28)) == [1, 2, 4, 7, 14, 28]
+    # assert sorted(utils.new_factors(28, prime=True)) == [2, 7]
+    assert sorted(utils.factors(9)) == [1, 3, 9]
+    # assert sorted(utils.new_factors(9, prime=True)) == [3]
 
 
 def test_divides():
@@ -21,16 +21,8 @@ def test_divides():
 
 
 def test_prime_factors():
-    assert utils.prime_factors(644) == {
-        2: 2,
-        7: 1,
-        23: 1
-    }
-    assert utils.prime_factors(645) == {
-        3: 1,
-        5: 1,
-        43: 1
-    }
+    assert set(utils.prime_factors(644)) == {(2, 2), (7, 1), (23, 1)}
+    assert set(utils.prime_factors(645)) == {(3, 1), (5, 1), (43, 1)}
 
 
 def test_list_int():

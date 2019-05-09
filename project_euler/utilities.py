@@ -63,6 +63,7 @@ def primes(stop: int = 50000) -> Iterable[int]:
     yield from sieve_of_eratosthenes(stop)
 
 
+'''
 def factors(number: int, proper: bool = False) -> Iterable[int]:
     divisors: Iterable[int] = filter(lambda x: number % x == 0, range(1, int(math.sqrt(number)) + 1))
     divisor_set: Set[int] = set(divisors)
@@ -71,26 +72,30 @@ def factors(number: int, proper: bool = False) -> Iterable[int]:
     all_factors = sorted(divisor_set.union(complement_set))
 
     yield from (x for x in all_factors if x != number and proper)
+'''
 
 
-def prime_factors(number: int, exponents: bool = True) -> Dict[int, int]:
+def factors(number: int, proper: bool = False):
+    for divisor in range(1, math.floor(math.sqrt(number)) + 1):
+        if number % divisor == 0:
+            yield divisor
+            complement = int(number / divisor)
+            if complement != divisor:
+                yield complement
+
+
+def prime_factors(number: int, exponents: bool = True) -> Iterable[Tuple[int, int]]:
     if is_prime(number):
-        return {number: 1}
+        yield number, 1
+    else:
+        for factor in factors(number):
+            if is_prime(factor):
+                for exponent in itertools.count(1):
+                    if number % math.pow(factor, exponent) != 0:
+                        yield factor, exponent - 1
+                        break
 
-    prime_factors = {} if is_odd(number) else {2: 0}
 
-    prime_factors.update({x: 0 for x in range(3, int(number / 2), 2) if number % x == 0 and is_prime(x)})
-    # return _divides(number, prime_factors) if exponents else prime_factors
-
-    if exponents:
-        for divisor in sorted(prime_factors.keys(), reverse=True):
-            while number % divisor == 0:
-                prime_factors[divisor] += 1
-                number /= divisor
-
-    return prime_factors
-
-        
     '''
     factors = [] if number % 2 else [2]
     factors += [x for x in range(3, int(number / 2), 2) if not number % x]
