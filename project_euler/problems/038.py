@@ -13,12 +13,12 @@ The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5
 What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1?
 '''
 import typing as typ
-from project_euler.utilities import int_list, list_int
+from project_euler.utilities import int_to_list, list_to_int
 
 
 def is_pandigital(number: typ.Union[int, typ.List[int]]) -> bool:
     if isinstance(number, int):
-        number = int_list(number)
+        number = int_to_list(number)
     if 0 in number:
         return False
     elif len(number) != 9:
@@ -30,14 +30,14 @@ def is_pandigital(number: typ.Union[int, typ.List[int]]) -> bool:
 
 
 def concatenated_product(number: int) -> int:
-    cat_product = int_list(number)
+    cat_product = int_to_list(number)
     count = 2
     while len(cat_product) < 9:
-        cat_product += int_list(number * count)
+        cat_product += int_to_list(number * count)
         count += 1
 
     if is_pandigital(cat_product):
-        return list_int(cat_product)
+        return list_to_int(cat_product)
     else:
         return None
 

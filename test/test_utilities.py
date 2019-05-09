@@ -25,12 +25,12 @@ def test_prime_factors():
     assert set(utils.prime_factors(645)) == {(3, 1), (5, 1), (43, 1)}
 
 
-def test_list_int():
-    assert utils.list_int([3, 2, 1]) == 321
+def test_list_to_int():
+    assert utils.list_to_int([3, 2, 1]) == 321
 
 
-def test_int_list():
-    assert utils.int_list(321) == [3, 2, 1]
+def test_int_to_list():
+    assert utils.int_to_list(321) == [3, 2, 1]
 
 
 def test_solve_quadratic():

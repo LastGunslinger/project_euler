@@ -103,7 +103,7 @@ Work out the first ten digits of the sum of the following one-hundred 50-digit n
 53503534226472524250874054075591789781264330331690
 '''
 from typing import List
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
@@ -213,7 +213,7 @@ def solve():
 
     input_array = input_string.split('\n')
     number_array = [int(x.strip()) for x in input_array if x.strip()]
-    matrix = [int_list(x) for x in number_array]
+    matrix = [int_to_list(x) for x in number_array]
     num_len = 50
 
     result = 0

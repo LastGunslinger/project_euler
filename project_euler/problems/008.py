@@ -27,7 +27,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 '''
 import re
 from functools import reduce
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
@@ -55,7 +55,7 @@ def solve():
     71636269561882670428252483600823257530420752963450
     '''
     raw_num = re.sub(r'\s+', '', raw_num)
-    num_list = int_list(int(raw_num))
+    num_list = int_to_list(int(raw_num))
     size = 13
 
     largest_product = 0

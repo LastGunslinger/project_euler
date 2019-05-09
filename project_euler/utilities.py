@@ -1,8 +1,6 @@
 import itertools
 import math
-import multiprocessing
 from typing import Dict, Tuple, List, Set, Iterable, Optional, Union
-from collections import defaultdict
 
 
 def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
@@ -16,11 +14,11 @@ def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
     return solution_1, solution_2
 
 
-def list_int(integer_list: List[int]) -> int:
+def list_to_int(integer_list: List[int]) -> int:
     return sum(x * (10 ** index) for index, x in enumerate(integer_list[::-1]))
 
 
-def int_list(*numbers: int) -> List[int]:
+def int_to_list(*numbers: int) -> List[int]:
     return [int(x) for number in numbers for x in str(number)]
 
 

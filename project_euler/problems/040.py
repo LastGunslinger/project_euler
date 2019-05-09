@@ -13,7 +13,7 @@ d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 from functools import reduce
 from itertools import count
 
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
@@ -21,7 +21,7 @@ def solve():
     limit = 1000000
     decimal = [0]
     for number in count(1):
-        decimal += int_list(number)
+        decimal += int_to_list(number)
         if len(decimal) > limit:
             break
     result = [decimal[10**x] for x in range(7)]

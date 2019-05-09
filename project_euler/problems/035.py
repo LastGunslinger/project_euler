@@ -7,11 +7,11 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 How many circular primes are there below one million?
 
 '''
-from project_euler.utilities import primes, is_prime, int_list
+from project_euler.utilities import primes, is_prime, int_to_list
 
 
 def rotations(number: int) -> int:
-    number = int_list(number)
+    number = int_to_list(number)
     if len(number) == 1:
         yield number[0]
         raise StopIteration

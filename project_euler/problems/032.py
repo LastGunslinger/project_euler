@@ -9,7 +9,7 @@ Find the sum of all products whose multiplicand/multiplier/product identity can 
 HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
 '''
 from logging import Logger
-from project_euler.utilities import int_list, int_set
+from project_euler.utilities import int_to_list, int_set
 
 
 def possibly_pandigital(num: int) -> bool:
@@ -23,7 +23,7 @@ def possibly_pandigital(num: int) -> bool:
 
 
 def is_pandigital(*numbers: int) -> bool:
-    number_list = int_list(*numbers)
+    number_list = int_to_list(*numbers)
     number_set = int_set(*numbers)
     if 0 in number_set:
         return False

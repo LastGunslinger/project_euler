@@ -23,7 +23,7 @@ import project_euler.utilities as utils
 
 def divisive(numbers: typ.List[int], primes: typ.List[int]):
     for index, prime in enumerate(primes, 1):
-        partial = utils.list_int(numbers[index:index + 3])
+        partial = utils.list_to_int(numbers[index:index + 3])
         if partial % prime:
             return False
     return True
@@ -34,7 +34,7 @@ def solve():
     number = list(range(0, 10))
     primes = list(utils.primes(17))
     divisive_nums = []
-    assert divisive(utils.int_list(1406357289), primes)
+    assert divisive(utils.int_to_list(1406357289), primes)
     for num in permutations(number):
         if num[0] == 0:
             continue
@@ -47,7 +47,7 @@ def solve():
         # logger.debug(f'Permutation: {num}')
         if divisive(num, primes):
             logger.debug(f'Divisive Number Found: {num}')
-            divisive_nums.append(utils.list_int(num))
+            divisive_nums.append(utils.list_to_int(num))
 
     assert 1406357289 in divisive_nums
     return sum(divisive_nums)

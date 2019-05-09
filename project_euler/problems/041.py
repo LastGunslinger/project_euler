@@ -6,7 +6,7 @@ What is the largest n-digit pandigital prime that exists?
 '''
 from itertools import permutations
 
-from project_euler.utilities import is_prime, list_int
+from project_euler.utilities import is_prime, list_to_int
 
 
 def solve():
@@ -16,8 +16,8 @@ def solve():
     while len(number) >= 4:
         for pandigital in permutations(number):
             logger.debug(pandigital)
-            if is_prime(list_int(pandigital)) and list_int(pandigital) > largest:
-                largest = list_int(pandigital)
+            if is_prime(list_to_int(pandigital)) and list_to_int(pandigital) > largest:
+                largest = list_to_int(pandigital)
                 # logger.debug(pandigital)
         if largest == 0:
             number = number[:-1]

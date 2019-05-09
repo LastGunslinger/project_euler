@@ -18,7 +18,7 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
 import re
 import typing as typ
 
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
@@ -41,7 +41,7 @@ def solve():
 
 def repeats(dividend: typ.Union[typ.List[int], int], divisor: int) -> int:
     if isinstance(dividend, int):
-        dividend = int_list(dividend)
+        dividend = int_to_list(dividend)
 
     quotient = []
     while not (dividend[0] == 0 and len(dividend) == 1):

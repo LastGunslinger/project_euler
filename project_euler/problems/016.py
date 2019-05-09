@@ -5,9 +5,9 @@ prompt = '''
 What is the sum of the digits of the number 2^1000?
 
 '''
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
     logger.debug(prompt)
-    return sum(int_list(2 ** 1000))
+    return sum(int_to_list(2 ** 1000))

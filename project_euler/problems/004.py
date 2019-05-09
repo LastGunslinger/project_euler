@@ -4,7 +4,7 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 '''
-from project_euler.utilities import int_list
+from project_euler.utilities import int_to_list
 
 
 def solve():
@@ -14,6 +14,6 @@ def solve():
     for m in reversed(range(100, 1000)):
         for n in reversed(range(100, 1000)):
             product = m * n
-            if int_list(product) == int_list(product)[::-1]:
+            if int_to_list(product) == int_to_list(product)[::-1]:
                 palindromes.append(product)
     return max(palindromes)

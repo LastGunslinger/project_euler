@@ -1,30 +1,19 @@
 from loguru import logger
+from project_euler.utilities import int_to_list, list_to_int
 
 
 prompt = '''
+The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317.
+
+Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.
 '''
 
 
-def solve() -> int:
+def solve():
     logger.debug(prompt)
-    start = 646 + 1
-    factor_length = 4
-    consecutive_target = 4
-    result = []
-
-    for number in count(start):
-        factors = list(prime_factors(number))
-        if len(factors) == factor_length:
-            result.append(number)
-            if len(result) > 1:
-                print(result)
-        elif not len(factors) == factor_length:
-            result = []
-
-        if len(result) == consecutive_target:
-            break
-
-    for num in result:
-        values = [f'{key}^{val}' for key, val in factors]
-        print(f'{num} = {" ".join(values)}')
-    return result[0]
+    limit = 1000
+    result = 0
+    for num in range(1, limit + 1):
+        result += pow(num, num)
+    result_list = int_to_list(result)
+    return ''.join(str(x) for x in result_list[-10:])
