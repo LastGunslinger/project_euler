@@ -18,4 +18,3 @@ def solve():
         key=lambda x: x[0],
         reverse=True
     )[0][0]
-

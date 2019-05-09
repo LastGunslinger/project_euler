@@ -28,7 +28,7 @@ def solve(logger: Logger) -> int:
     result = []
 
     for number in count(start):
-        factors = prime_factors(number, exponents=False)
+        factors = [x[0] for x in prime_factors(number)]
         if len(factors) == factor_length:
             result.append(number)
             print(result)
