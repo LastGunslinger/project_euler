@@ -96,28 +96,6 @@ def prime_factors(number: int, exponents: bool = True) -> Iterable[Tuple[int, in
                         break
 
 
-    '''
-    factors = [] if number % 2 else [2]
-    factors += [x for x in range(3, int(number / 2), 2) if not number % x]
-    with multiprocessing.Pool() as pool:
-        prime_check = pool.map(is_prime, factors)
-        print(type(prime_check))
-    p_factors = [x for i, x in enumerate(factors) if prime_check[i]]
-    print(p_factors)
-    # p_factors = [x for x in factors if is_prime(x)]
-    return _divides(number, p_factors) if exponents else p_factors
-    '''
-
-
-def _divides(number: int, prime_divisors: Dict[int, int]) -> Dict[int, int]:
-    result = []
-    for divisor in sorted(prime_divisors.keys(), reverse=True):
-        while number % divisor == 0:
-            prime_divisors[divisor] += 1
-            number /= divisor
-    return prime_divisors
-
-
 def fibonacci(iterations: int = 0, limit: int = 0) -> Iterable[int]:
     '''
     Return the nth number in the Fibonacci sequence.
