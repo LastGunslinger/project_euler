@@ -17,7 +17,3 @@ def solve():
     logger.debug(prompt)
     upper_bound = 4000000
     return sum(x for x in fibonacci(limit=upper_bound) if x % 2 == 0)
-
-
-if __name__ == '__main__':
-    logger.info(f'Solution = {solve()}')

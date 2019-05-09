@@ -13,10 +13,9 @@ What is the largest prime factor of the number 600851475143 ?
 def solve():
     logger.debug(prompt)
     number = 600851475143
-    factors = [x for x in prime_factors(number, exponents=False).keys()]
-    print(sorted(factors))
-    return max(factors)
+    return sorted(
+        prime_factors(number),
+        key=lambda x: x[0],
+        reverse=True
+    )[0][0]
 
-
-if __name__ == '__main__':
-    logger.info(f'Solution = {solve()}')
