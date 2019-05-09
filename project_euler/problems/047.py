@@ -1,3 +1,9 @@
+from itertools import count
+from loguru import logger
+
+from project_euler.utilities import prime_factors
+
+
 prompt = '''
 
 The first two consecutive numbers to have two distinct prime factors are:
@@ -14,13 +20,8 @@ The first three consecutive numbers to have three distinct prime factors are:
 Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?
 '''
 
-from itertools import count
-from logging import Logger
 
-from project_euler.utilities import prime_factors
-
-
-def solve(logger: Logger) -> int:
+def solve() -> int:
     logger.debug(prompt)
     start = 646 + 1
     factor_length = 4
@@ -28,15 +29,18 @@ def solve(logger: Logger) -> int:
     result = []
 
     for number in count(start):
-        factors = [x[0] for x in prime_factors(number)]
+        factors = list(prime_factors(number))
         if len(factors) == factor_length:
             result.append(number)
-            print(result)
+            if len(result) > 1:
+                print(result)
         elif not len(factors) == factor_length:
             result = []
 
         if len(result) == consecutive_target:
-            for num in result:
-                values = [f'{key}^{val}' for key, val in factors.items()]
-                print(f'{num} = {" ".join(values)}')
-            return result[0]
+            break
+
+    for num in result:
+        values = [f'{key}^{val}' for key, val in factors]
+        print(f'{num} = {" ".join(values)}')
+    return result[0]
