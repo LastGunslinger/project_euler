@@ -1,15 +1,19 @@
 from loguru import logger
+from project_euler.utilities import int_to_list
 
 
 prompt = '''
-The arithmetic sequence, 1487, 4817, 8147, in which each of the terms increases by 3330, is unusual in two ways: (i) each of the three terms are prime, and, (ii) each of the 4-digit numbers are permutations of one another.
+The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317.
 
-There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes, exhibiting this property, but there is one other 4-digit increasing sequence.
-
-What 12-digit number do you form by concatenating the three terms in this sequence?
+Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.
 '''
 
 
 def solve():
     logger.debug(prompt)
-    return 0
+    limit = 1000
+    result = 0
+    for num in range(1, limit + 1):
+        result += pow(num, num)
+    result_list = int_to_list(result)
+    return ''.join(str(x) for x in result_list[-10:])
