@@ -1,4 +1,5 @@
 import project_euler.utilities as utils
+import math
 
 
 def test_fibonacci():
@@ -20,9 +21,18 @@ def test_divides():
     assert set(utils._divides(24, [2, 3])) == set([(2, 3), (3, 1)])
 
 
+def test_prime_factors_recursive():
+    assert sorted(utils.prime_factors_recursive(644)) == [2, 2, 7, 23]
+    # assert sorted(utils.new_factors(28, prime=True)) == [2, 7]
+    assert sorted(utils.prime_factors_recursive(645)) == [3, 5, 43]
+    assert sorted(utils.prime_factors_recursive(math.factorial(12))) == [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 7, 11]
+    # assert sorted(utils.new_factors(9, prime=True)) == [3]
+
+
 def test_prime_factors():
     assert set(utils.prime_factors(644)) == {(2, 2), (7, 1), (23, 1)}
     assert set(utils.prime_factors(645)) == {(3, 1), (5, 1), (43, 1)}
+    assert set(utils.prime_factors(math.factorial(12))) == {(2, 10), (3, 5), (5, 2), (7, 1), (11, 1)}
 
 
 def test_list_to_int():

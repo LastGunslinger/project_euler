@@ -31,9 +31,11 @@ def is_prime(number: int) -> bool:
         return False
     elif 2 <= number <= 3:
         return True
+    elif number == 5:
+        return True
     elif is_even(number):
         return False
-    elif str(number)[-1] == 5:
+    elif str(number)[-1] == '5':
         return False
     for x in range(3, int(math.sqrt(number)) + 1, 2):
         if number % x == 0:
@@ -64,6 +66,24 @@ def factors(number: int) -> Iterable[int]:
             complement = int(number / divisor)
             if complement != divisor:
                 yield complement
+
+
+def prime_factors_recursive(number: int):
+    if is_prime(number):
+        yield number
+    else:
+        if number % 2 == 0:
+            yield 2
+            yield from prime_factors_recursive(int(number / 2))
+        else:
+            for divisor in range(3, math.floor(math.sqrt(number)) + 1, 2):
+                if number % divisor == 0:
+                    complement = int(number / divisor)
+                    print(f'yielded {divisor}')
+                    yield from prime_factors_recursive(divisor)
+                    # yield from prime_factors_recursive(divisor)
+                    yield from prime_factors_recursive(complement)
+                    break
 
 
 def prime_factors(number: int, exponents: bool = True) -> Iterable[Tuple[int, int]]:
