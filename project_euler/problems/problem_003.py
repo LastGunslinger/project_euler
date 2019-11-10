@@ -10,6 +10,6 @@ from ..utilities import prime_factors
 def solve(logger):
     logger.debug(prompt)
     number = 600851475143
-    factors = [x for x in prime_factors(number, exponents=False).keys()]
-    print(sorted(factors))
+    factors = sorted(prime_factors(number, exponents=False))
+    print(factors)
     return max(factors)

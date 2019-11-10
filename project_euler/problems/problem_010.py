@@ -10,8 +10,5 @@ from ..utilities import primes
 def solve(logger):
     logger.debug(prompt)
     limit = 2000000
-    prime_sum = 0
-    for prime in primes(stop=limit):
-        print(prime)
-        prime_sum += prime
-    return prime_sum
+
+    return sum(primes(limit=limit))

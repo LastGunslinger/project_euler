@@ -59,8 +59,8 @@ def is_even(number: int) -> bool:
     return not is_odd(number)
 
 
-def primes(stop: int = 50000) -> Iterable[int]:
-    yield from sieve_of_eratosthenes(stop)
+def primes(limit: int = 1000000) -> Iterable[int]:
+    yield from sieve_of_eratosthenes(limit)
 
 
 def factors(number: int, proper: bool = False) -> Iterable[int]:
@@ -70,27 +70,28 @@ def factors(number: int, proper: bool = False) -> Iterable[int]:
     complement_set: Set[int] = set(complements)
     all_factors = sorted(divisor_set.union(complement_set))
 
-    yield from (x for x in all_factors if x != number and proper)
+    if proper:
+        yield from (x for x in all_factors if x != number and x != 1)
+    else:
+        yield from all_factors
+        # yield from (x for x in all_factors)
 
 
-def prime_factors(number: int, exponents: bool = True) -> Dict[int, int]:
-    if is_prime(number):
-        return {number: 1}
-
-    prime_factors = {} if is_odd(number) else {2: 0}
-
-    prime_factors.update({x: 0 for x in range(3, int(number / 2), 2) if number % x == 0 and is_prime(x)})
-    # return _divides(number, prime_factors) if exponents else prime_factors
-
+def prime_factors(number: int, exponents: bool = True) -> Tuple[int, int]:
     if exponents:
-        for divisor in sorted(prime_factors.keys(), reverse=True):
+        list_factors = sorted(factors(number, proper=True), reverse=True)
+        for factor in list_factors:
+            if not is_prime(factor):
+                continue
+            divisor = factor
+            exponent = 0
             while number % divisor == 0:
-                prime_factors[divisor] += 1
+                exponent += 1
                 number /= divisor
+            yield factor, exponent
+    else:
+        yield from (x for x in factors(number, proper=True) if is_prime(x))
 
-    return prime_factors
-
-        
     '''
     factors = [] if number % 2 else [2]
     factors += [x for x in range(3, int(number / 2), 2) if not number % x]
@@ -121,18 +122,18 @@ def fibonacci(n: int = 0, stop: int = 0) -> Iterable[int]:
     n1, n2 = 1, 1
     yield n1
     if n and n == 1:
-        raise StopIteration
+        return
     yield n2
     if n and n == 2:
-        raise StopIteration
+        return
 
     for x in itertools.count(2):
         if n and x >= n:
-            raise StopIteration
+            return
         else:
             fib_sum = n1 + n2
             if stop and fib_sum >= stop:
-                raise StopIteration
+                return
             yield fib_sum
             n1, n2 = n2, fib_sum
 
@@ -155,4 +156,4 @@ def sieve_of_eratosthenes(limit: int = 1000000) -> Iterable[int]:
         elif sieve[p_value] is False:
             p_value += 1
         else:
-            raise StopIteration
+            return

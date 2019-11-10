@@ -16,6 +16,7 @@ RUN pip install 'Poetry==1.0.0b4'
 
 # Set poetry configuration
 RUN poetry config virtualenvs.create false
+RUN poetry config virtualenvs.in-project false
 
 # Copy poetry lock file into container
 # COPY poetry.lock poetry.lock

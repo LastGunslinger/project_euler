@@ -20,24 +20,25 @@ What is the value of the first triangle number to have over five hundred divisor
 '''
 from functools import reduce
 from itertools import count
+from math import sqrt
+from typing import Iterable
 
 from ..utilities import prime_factors
 
 
 def solve(logger):
     logger.debug(prompt)
-    start = 1000
-    for triangle in triangles(start):
-        p_factors = prime_factors(triangle).keys()
-        all_factors = reduce(lambda x, y: x * y, [x[1] + 1 for x in p_factors])
-        print(f'{triangle} has {all_factors} factors')
-        if all_factors > 500:
-            return triangle
+    limit = 500
+    for t in triangles(start=3):
+        # p_factors = prime_factors(triangle)
+        factors = prime_factors(t)
+        factor_count = reduce(lambda x, y: x * y, (exp + 1 for prime, exp in factors))
+        # all_factors = reduce(lambda x, y: x * y, [x[1] + 1 for x in p_factors])
+        # print(f'{t} has {factor_count} factors')
+        if factor_count > limit:
+            return t
 
 
-def triangles(start: int = 1):
-    result = sum(x for x in range(1, start + 1))
-    yield result
-    for x in count(start + 1):
-        result += x
-        yield result
+def triangles(start: int = 1) -> Iterable[int]:
+    for x in count(start):
+        yield int(x * (x + 1) / 2)

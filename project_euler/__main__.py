@@ -20,7 +20,7 @@ def run(args: typ.List[typ.Any]):
             logger = logging.getLogger(f'{__name__}.{arg}')
             logger.setLevel(logging.DEBUG)
             # Setup file handler for this problem
-            file_handler = logging.FileHandler(f'{Path(Path.cwd(), "project_euler/logs", arg)}.log', mode='w')
+            file_handler = logging.FileHandler(f'{Path(Path.cwd(), "logs", arg)}.log', mode='w')
             file_handler.setLevel(logging.DEBUG)
             # Setup stream handler for this problem
             stream_handler = logging.StreamHandler()

@@ -9,11 +9,11 @@ from ..utilities import int_list
 
 def solve(logger):
     logger.debug(prompt)
-    palindromes = []
+    largest_palindrome = 0
     # loop backwards through n * m for 100 <= m <= n <= 1000
     for m in reversed(range(100, 1000)):
-        for n in reversed(range(100, 1000)):
+        for n in reversed(range(100, m + 1)):
             product = m * n
-            if int_list(product) == int_list(product)[::-1]:
-                palindromes.append(product)
-    return max(palindromes)
+            if int_list(product) == int_list(product)[::-1] and product > largest_palindrome:
+                largest_palindrome = product
+    return largest_palindrome

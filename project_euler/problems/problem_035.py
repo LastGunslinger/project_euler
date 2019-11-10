@@ -14,7 +14,7 @@ def rotations(number: int) -> int:
     number = int_list(number)
     if len(number) == 1:
         yield number[0]
-        raise StopIteration
+        return
     for x in range(1, len(number)):
         rotation = number[x:] + number[:x]
         yield sum(digit * (10 ** (len(rotation) - 1 - index)) for index, digit in enumerate(rotation))
