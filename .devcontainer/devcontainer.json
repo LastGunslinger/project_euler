@@ -32,6 +32,9 @@
 		"terminal.integrated.shell.linux": null
 	},
 
+	"mounts": [
+		"type=bind,src=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,dst=/home/docker/.ssh"
+	],
 	// Uncomment the next line if you want to publish any ports.
 	// "appPort": [],
 
@@ -40,6 +43,6 @@
 
 	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [
-        "ms-python.python"
-    ]
+		"ms-python.python"
+	]
 }
