@@ -1,29 +1,29 @@
 FROM python:3.8
 
-# Copy certificate into container
-COPY /certs /certs
-COPY pip.conf /etc/pip.conf
+ARG USER=docker
+ARG PROJECT=project_euler
 
-# ENV REQUESTS_CA_BUNDLE=/certs/CPAROOT-CA.pem
-
-# Point pip at container certificate
-# RUN pip config set global.cert /certs/CPAROOT-CA.pem
-# RUN pip config set global.timeout 180
-# RUN pip config set global.trusted-host pypi.org pypi.python.org files.pythonhosted.org
+ENV REQUESTS_CA_BUNDLE=/etc/certs/CPAROOT-CA.pem
 
 # Create a non-root user
-RUN groupadd docker --gid 1000 \
-    && useradd docker --create-home --shell /bin/bash --uid 1000 --gid 1000
+RUN groupadd ${USER} --gid 1000 \
+    && useradd ${USER} --create-home --shell /bin/bash --uid 1000 --gid 1000
 
-ENV PATH=/home/docker/.local/bin:$PATH
+ENV PATH=/home/${USER}/.local/bin:$PATH
 
-USER docker
+# Copy certificate into container
+COPY --chown=${USER}:${USER} certs /etc/certs
+COPY --chown=${USER}:${USER} pip.conf /etc/pip.conf
+
+RUN chown -R docker:docker /usr/local
+
+USER ${USER}
 
 # Install poetry
 RUN pip install poetry --user
 
 # Set poetry configuration
-RUN poetry config virtualenvs.create true \
-    && poetry config virtualenvs.in-project true
+RUN poetry config virtualenvs.create false \
+    && poetry config virtualenvs.in-project false
 
 ENTRYPOINT [ "/bin/bash" ]
