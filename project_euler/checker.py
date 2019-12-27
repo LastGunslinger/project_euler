@@ -1,12 +1,14 @@
-import requests as req
 import re
 import typing as typ
+
+import certifi
+import requests as req
 
 
 def _get_solution(problem: int):
     '''Pull the solution from the luckytoilet solution repo'''
     url = 'https://raw.githubusercontent.com/luckytoilet/projecteuler-solutions/master/Solutions.md'
-    with req.get(url) as resp:
+    with req.get(url, verify=certifi.where()) as resp:
         if resp.status_code == 200:
             match = re.search(fr'^{problem}\.\s(?P<solution>[\-\.\d]+)', resp.text, re.MULTILINE)
         else:
