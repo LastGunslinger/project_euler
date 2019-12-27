@@ -17,24 +17,20 @@ def test_factors():
     assert len(list(utils.factors(500500))) == 96
 
 
-def test_divides():
-    assert set(utils._divides(24, [2, 3])) == set([(2, 3), (3, 1)])
-
-
 def test_prime_factors():
     assert list(utils.prime_factors(13195, exponents=False)) == [5, 7, 13, 29]
     for x, y in utils.prime_factors(644):
         print(f'{x} ^ {y}')
-    assert list(utils.prime_factors(644)) == [
-        (2, 2)
-        (7, 1)
-        (23, 1)
-    ]
-    assert utils.prime_factors(645) == {
-        3: 1,
-        5: 1,
-        43: 1
-    }
+    assert set(utils.prime_factors(644)) == set([
+        (2, 2),
+        (7, 1),
+        (23, 1),
+    ])
+    assert set(utils.prime_factors(645)) == set([
+        (3, 1),
+        (5, 1),
+        (43, 1),
+    ])
 
 
 def test_list_int():

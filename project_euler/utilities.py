@@ -1,8 +1,6 @@
 import itertools
 import math
-import multiprocessing
-from typing import Dict, Tuple, List, Set, Iterable, Optional, Union
-from collections import defaultdict
+from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
 
 
 def solve_quadratic(a: float, b: float, c: float) -> Tuple[float, float]:
@@ -49,10 +47,7 @@ def is_prime(number: int) -> bool:
 
 
 def is_odd(number: int) -> bool:
-    if number % 2:
-        return True
-    else:
-        return False
+    return True if number % 2 else False
 
 
 def is_even(number: int) -> bool:
@@ -74,10 +69,9 @@ def factors(number: int, proper: bool = False) -> Iterable[int]:
         yield from (x for x in all_factors if x != number and x != 1)
     else:
         yield from all_factors
-        # yield from (x for x in all_factors)
 
 
-def prime_factors(number: int, exponents: bool = True) -> Tuple[int, int]:
+def prime_factors(number: int, exponents: bool = True) -> Union[int, Tuple[int, int]]:
     if exponents:
         list_factors = sorted(factors(number, proper=True), reverse=True)
         for factor in list_factors:
@@ -91,27 +85,6 @@ def prime_factors(number: int, exponents: bool = True) -> Tuple[int, int]:
             yield factor, exponent
     else:
         yield from (x for x in factors(number, proper=True) if is_prime(x))
-
-    '''
-    factors = [] if number % 2 else [2]
-    factors += [x for x in range(3, int(number / 2), 2) if not number % x]
-    with multiprocessing.Pool() as pool:
-        prime_check = pool.map(is_prime, factors)
-        print(type(prime_check))
-    p_factors = [x for i, x in enumerate(factors) if prime_check[i]]
-    print(p_factors)
-    # p_factors = [x for x in factors if is_prime(x)]
-    return _divides(number, p_factors) if exponents else p_factors
-    '''
-
-
-def _divides(number: int, prime_divisors: Dict[int, int]) -> Dict[int, int]:
-    result = []
-    for divisor in sorted(prime_divisors.keys(), reverse=True):
-        while number % divisor == 0:
-            prime_divisors[divisor] += 1
-            number /= divisor
-    return prime_divisors
 
 
 def fibonacci(n: int = 0, stop: int = 0) -> Iterable[int]:
