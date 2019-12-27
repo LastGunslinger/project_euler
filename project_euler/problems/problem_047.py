@@ -28,7 +28,7 @@ def solve(logger: Logger) -> int:
     result = []
 
     for number in count(start):
-        factors = list(prime_factors(number, exponents=False))
+        factors = list(prime_factors(number, exponents=True))
         if len(factors) == factor_length:
             result.append(number)
             print(result)
@@ -37,6 +37,6 @@ def solve(logger: Logger) -> int:
 
         if len(result) == consecutive_target:
             for num in result:
-                values = [f'{key}^{val}' for key, val in factors.items()]
+                values = [f'{factor}^{exponent}' for factor, exponent in factors]
                 print(f'{num} = {" ".join(values)}')
             return result[0]
