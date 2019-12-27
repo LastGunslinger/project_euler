@@ -1,7 +1,6 @@
 FROM python:3.8
 
 ARG USER=docker
-ARG PROJECT=project_euler
 
 ENV REQUESTS_CA_BUNDLE=/etc/certs/CPAROOT-CA.pem
 
