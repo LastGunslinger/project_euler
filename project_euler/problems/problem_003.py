@@ -7,9 +7,9 @@ What is the largest prime factor of the number 600851475143 ?
 from ..utilities import prime_factors
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     number = 600851475143
     factors = sorted(prime_factors(number, exponents=False))
-    print(factors)
+    logger.debug(factors)
     return max(factors)

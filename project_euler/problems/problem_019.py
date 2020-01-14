@@ -15,7 +15,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 '''
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     months = {
         '01-January': 31,
@@ -47,7 +47,7 @@ def solve(logger):
     for year in range(1901, 2001):
         if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
             months['02-February'] = 29
-            print(f'LEAP YEAR - {year}')
+            logger.debug(f'LEAP YEAR - {year}')
         else:
             months['02-February'] = 28
 
@@ -55,6 +55,6 @@ def solve(logger):
             for day in range(1, days_in_month + 1):
                 if days[current_day] == 'Sunday' and day == 1:  # This is a Sunday
                     first_sundays += 1
-                    print(f'Sunday, {month[3:]} {day}, {year}')
+                    logger.debug(f'Sunday, {month[3:]} {day}, {year}')
                 current_day = (current_day + 1) % len(days)
     return first_sundays

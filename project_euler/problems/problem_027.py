@@ -47,7 +47,7 @@ def gen_solutions(a: int, b: int):
         yield quadratic(n, a, b)
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 1000
     prime_sieve = list(primes(limit + 1))
@@ -62,7 +62,7 @@ def solve(logger):
                 n += 1
 
             if n > max_prime_count:
-                print(f'x^2 + ({a})x + ({b}) returns {n} primes')
+                logger.debug(f'x^2 + ({a})x + ({b}) returns {n} primes')
                 max_prime_count = n
                 coeffs = (a, b)
     return int(coeffs[0] * coeffs[1])

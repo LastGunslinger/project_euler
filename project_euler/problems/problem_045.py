@@ -33,14 +33,14 @@ def generate_hexagonal(start: int = 0) -> Iterable[int]:
         yield int(n * ((2 * n) - 1))
 
 
-def solve(logger: Logger) -> int:
+async def solve(logger: Logger) -> int:
     logger.debug(prompt)
     t_start = 285 + 1
     p_start = 165
     h_start = 143
 
     for triangle in generate_triangle(t_start):
-        print(f'{triangle}')
+        logger.debug(f'{triangle}')
         for pentagonal in generate_pentagonal(p_start):
             if pentagonal < triangle:
                 p_start += 1

@@ -29,7 +29,7 @@ def right_truncatable(number: int):
         return False
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     result = set()
     prime_set.update(primes(1000000))

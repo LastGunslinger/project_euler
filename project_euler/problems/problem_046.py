@@ -36,15 +36,15 @@ def conjecture(number: int) -> bool:
             elif 2 * (x ** 2) > remainder:
                 break
             else:
-                print(f'{number} = {prime} + 2 * {x}^2')
+                logger.debug(f'{number} = {prime} + 2 * {x}^2')
                 return True
     return False
 
 
-def solve(logger: Logger) -> int:
+async def solve(logger: Logger) -> int:
     logger.debug(prompt)
 
     for number in composites():
         if not conjecture(number):
-            print(f'{number} is not equal to the sum of a prime and twice a square')
+            logger.debug(f'{number} is not equal to the sum of a prime and twice a square')
             return number

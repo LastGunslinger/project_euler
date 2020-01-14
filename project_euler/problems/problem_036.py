@@ -23,7 +23,7 @@ def generate_palindromes(start: int=1, stop: int=1000000):
             yield number
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     result = set()
     for palindrome in generate_palindromes():

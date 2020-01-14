@@ -7,7 +7,7 @@ How many such routes are there through a 20×20 grid?
 import math
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     lattice = (20 + 20, 20)
 

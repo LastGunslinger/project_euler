@@ -15,11 +15,12 @@ NOTE: This is a much more difficult version of Problem 18. It is not possible to
 
 '''
 from .problem_018 import gen_triangle, max_sum
+from pathlib import Path
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
-    with open(r'project_euler/problems/problem_067.txt') as data_file:
+    with open(Path.cwd() / 'data/problem_067.txt') as data_file:
         triangle_data = []
         for data in data_file.readlines():
             row = [int(x) for x in data.split()]

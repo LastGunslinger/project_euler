@@ -10,7 +10,7 @@ Find the product abc.
 '''
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     a = 1
     b = a + 1
@@ -19,7 +19,7 @@ def solve(logger):
         c = 1000 - a - b
         while b < c:
             if a * a + b * b == c * c:
-                print(f'{a}^2 * {b}^2 = {c}^2 = {c**2}')
+                logger.debug(f'{a}^2 * {b}^2 = {c}^2 = {c**2}')
                 return a * b * c
             else:
                 b += 1

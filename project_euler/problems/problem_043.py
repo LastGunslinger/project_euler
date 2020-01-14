@@ -29,7 +29,7 @@ def divisive(numbers: typ.List[int], primes: typ.List[int]):
     return True
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     number = list(range(0, 10))
     primes = list(utils.primes(17))

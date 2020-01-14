@@ -7,16 +7,16 @@ For example, when the list is sorted into alphabetical order, COLIN, which is wo
 
 What is the total of all the name scores in the file?
 '''
-from pprint import pprint
+from pathlib import Path
 
 
 def name_value(name):
     return sum(ord(x) - 64 for x in name)
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
-    with open(r'project_euler/problems/problem_022.txt', 'r') as name_file:
+    with open(Path.cwd() / 'data/problem_022.txt', 'r') as name_file:
         data = name_file.read().replace('\"', '')
         names = data.split(',')
 
@@ -24,5 +24,4 @@ def solve(logger):
         name: name_value(name) * (index + 1) for index, name in enumerate(sorted(names))
     }
 
-    pprint(names_dict)
     return sum(val for key, val in names_dict.items())

@@ -26,7 +26,7 @@ from typing import Iterable
 from ..utilities import prime_factors
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 500
     for t in triangles(start=3):
@@ -34,7 +34,7 @@ def solve(logger):
         factors = prime_factors(t)
         factor_count = reduce(lambda x, y: x * y, (exp + 1 for prime, exp in factors))
         # all_factors = reduce(lambda x, y: x * y, [x[1] + 1 for x in p_factors])
-        # print(f'{t} has {factor_count} factors')
+        # logger.debug(f'{t} has {factor_count} factors')
         if factor_count > limit:
             return t
 

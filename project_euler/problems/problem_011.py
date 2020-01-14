@@ -30,7 +30,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 from functools import reduce
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
 
     raw_grid = '''
@@ -57,7 +57,7 @@ def solve(logger):
     '''.split()
     grid = []
     for x in range(0, 400, 20):
-        print([int(y) for y in raw_grid[x: x + 20]])
+        logger.debug([int(y) for y in raw_grid[x: x + 20]])
         grid.append([int(y) for y in raw_grid[x: x + 20]])
 
     products = []
@@ -67,7 +67,7 @@ def solve(logger):
             products.append(vertical(grid, row, column))
             products.append(diagonal_down(grid, row, column))
             products.append(diagonal_up(grid, row, column))
-    # print(products)
+    # logger.debug(products)
     return max(products)
 
 

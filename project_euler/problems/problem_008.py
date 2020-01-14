@@ -30,7 +30,7 @@ from functools import reduce
 from ..utilities import int_list
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     raw_num = '''
     73167176531330624919225119674426574742355349194934

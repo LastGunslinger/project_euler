@@ -24,7 +24,7 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 from ..utilities import fibonacci
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 1000
     for index, fib in enumerate(fibonacci(), start=1):

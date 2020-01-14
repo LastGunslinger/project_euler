@@ -11,7 +11,7 @@ p = a + b + (a^2 + b^2)^0.5
 '''
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     results = {}
     for a in range(1, 1000):

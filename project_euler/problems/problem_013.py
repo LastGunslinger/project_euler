@@ -106,7 +106,7 @@ from typing import List
 from ..utilities import int_list
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     input_string = '''
     37107287533902102798797998220837590246510135740250

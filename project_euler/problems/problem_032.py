@@ -35,7 +35,7 @@ def is_pandigital(*numbers: int) -> bool:
         return True
 
 
-def solve(logger: Logger) -> int:
+async def solve(logger: Logger) -> int:
     logger.debug(prompt)
     # Mathematically, pandigitals can be created with 2 * 3 digit numbers or 1 * 4 digit numbers.
     # This reduces the range of numbers I need to look for.

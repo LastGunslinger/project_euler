@@ -20,7 +20,7 @@ from logging import Logger
 from project_euler.utilities import prime_factors
 
 
-def solve(logger: Logger) -> int:
+async def solve(logger: Logger) -> int:
     logger.debug(prompt)
     start = 646 + 1
     factor_length = 4
@@ -31,12 +31,12 @@ def solve(logger: Logger) -> int:
         factors = list(prime_factors(number, exponents=True))
         if len(factors) == factor_length:
             result.append(number)
-            print(result)
+            logger.debug(result)
         elif not len(factors) == factor_length:
             result = []
 
         if len(result) == consecutive_target:
             for num in result:
                 values = [f'{factor}^{exponent}' for factor, exponent in factors]
-                print(f'{num} = {" ".join(values)}')
+                logger.debug(f'{num} = {" ".join(values)}')
             return result[0]

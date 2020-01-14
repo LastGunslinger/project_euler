@@ -7,10 +7,10 @@ What is the 10,001st prime number?
 from ..utilities import primes
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 10001
     for index, prime in enumerate(primes()):
-        # print(f'{index + 1:05}: {prime}')
+        # logger.debug(f'{index + 1:05}: {prime}')
         if index == limit - 1:
             return prime

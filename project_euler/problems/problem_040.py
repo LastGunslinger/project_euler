@@ -16,7 +16,7 @@ from itertools import count
 from ..utilities import int_list
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 1000000
     decimal = [0]

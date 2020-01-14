@@ -63,9 +63,9 @@ def paint_box(matrix: Matrix) -> Matrix:
 
 
 def test_paint_box() -> None:
-    print()
+    logger.debug()
     matrix = Matrix(5, 5)
-    print(paint_box(matrix))
+    logger.debug(paint_box(matrix))
 
 
 def sum_diagonals(matrix: Matrix) -> int:
@@ -77,10 +77,10 @@ def sum_diagonals(matrix: Matrix) -> int:
 def test_sum_diagonals() -> None:
     matrix = Matrix(5, 5)
     matrix = paint_box(matrix)
-    print(sum_diagonals(matrix))
+    logger.debug(sum_diagonals(matrix))
 
 
-def solve(logger) -> int:
+async def solve(logger) -> int:
     logger.debug(prompt)
     size = 1001
     mtx = Matrix(size, size)

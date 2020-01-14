@@ -42,7 +42,7 @@ def concatenated_product(number: int) -> int:
         return None
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     result = []
     # Range only goes up to the largest pandigital 4-digit number

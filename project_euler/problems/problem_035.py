@@ -20,7 +20,7 @@ def rotations(number: int) -> int:
         yield sum(digit * (10 ** (len(rotation) - 1 - index)) for index, digit in enumerate(rotation))
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     # Prefill set with known circular primes
     result = {2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97}
@@ -36,5 +36,5 @@ def solve(logger):
         else:
             logger.debug(f'Circular Primes Found: {prime_rotations}')
             result.update(prime_rotations)
-    # print(sorted(result))
+    # logger.debug(sorted(result))
     return len(result)

@@ -18,11 +18,11 @@ def gen_powers(power):
     upper_bound = (9**power) * power + 1
     for num in range(lower_bound, upper_bound):
         if sum([int(x)**power for x in str(num)]) == num:
-            print(num)
+            logger.debug(num)
             yield num
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     power = 5
     results = []

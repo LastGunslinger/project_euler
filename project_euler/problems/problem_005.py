@@ -7,7 +7,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
 from functools import reduce
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     primes = [2, 3, 5, 7, 11, 13, 17, 19]  # all prime numbers <= 20
     prime_prod = reduce((lambda x, y: x * y), primes)

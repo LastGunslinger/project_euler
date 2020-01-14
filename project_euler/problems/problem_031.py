@@ -10,7 +10,7 @@ How many different ways can £2 be made using any number of coins?
 '''
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     target_value = 200
     coin_values = [1, 2, 5, 10, 20, 50, 100, 200]

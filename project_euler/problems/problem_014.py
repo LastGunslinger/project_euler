@@ -19,7 +19,7 @@ from multiprocessing import Pool
 from typing import Tuple
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     with Pool() as pool:
         chain_counts = pool.map(count_chain, range(2, 1000000))
@@ -35,5 +35,5 @@ def count_chain(number: int) -> Tuple[int]:
         else:
             num = (3 * num) + 1
         count += 1
-    print(f'{int(number)} -> {count}')
+    logger.debug(f'{int(number)} -> {count}')
     return (int(number), count)

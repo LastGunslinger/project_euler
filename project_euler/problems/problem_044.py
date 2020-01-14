@@ -25,7 +25,7 @@ def is_pentagonal(p: int):
         return False
 
 
-def solve(logger):
+async def solve(logger):
     assert is_pentagonal(145)
     assert not is_pentagonal(48)
     assert pentagonal(10) == 145

@@ -20,10 +20,10 @@ def gen_terms(a_limits, b_limits):
             yield a**b
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     a_limits = (2, 100)
     b_limits = (2, 100)
     combinations = {x for x in gen_terms(a_limits, b_limits)}
-    # print(combinations)
+    # logger.debug(combinations)
     return len(combinations)

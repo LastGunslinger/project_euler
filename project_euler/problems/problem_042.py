@@ -44,11 +44,11 @@ def convert_words(filename):
     return word_dict
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     # triangle_number_set = set()
     triangle_words = []
-    word_dict = convert_words(Path(Path.cwd(), 'project_euler/problems/problem_042.txt'))
+    word_dict = convert_words(Path.cwd() / 'data/problem_042.txt')
     for word, value in word_dict.items():
         if is_triangle_number(value):
             logger.debug(f'{word} : {value}')

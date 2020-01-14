@@ -10,7 +10,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 import re
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     longform = {
         '0': '',
@@ -63,7 +63,7 @@ def solve(logger):
         if len(xstr) == 1:
             letters += longform[xstr] + '\n'
 
-    print(letters)
+    logger.debug(letters)
     letters = re.sub(r'\W', '', letters)
-    print(letters)
+    logger.debug(letters)
     return len(letters)

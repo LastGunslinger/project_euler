@@ -9,7 +9,7 @@ from itertools import permutations
 from ..utilities import is_prime, list_int
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     number = list(range(1, 10))
     largest = 0

@@ -33,7 +33,7 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
 from typing import List
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     data = '''
         75
@@ -67,7 +67,7 @@ def max_sum(triangle: List[List[int]]) -> int:
                 triangle[index][col] += left_branch
             else:
                 triangle[index][col] += right_branch
-        print(triangle[-2])
+        logger.debug(triangle[-2])
         triangle.pop()
 
     return triangle[0][0]

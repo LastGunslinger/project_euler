@@ -45,7 +45,7 @@ def generate_fractions():
             yield numerator, denominator
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     naive_fractions = []
     for num, denom in generate_fractions():

@@ -18,11 +18,11 @@ def abundants(limit: int) -> int:
     '''Return all abundant numbers < limit'''
     for number in range(1, limit):
         if sum(factors(number, proper=True)) > number:
-            print(f'Abundant: {number}')
+            logger.debug(f'Abundant: {number}')
             yield number
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 28123
     abundant_nums = list(abundants(limit + 1))

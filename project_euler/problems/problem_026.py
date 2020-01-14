@@ -21,21 +21,21 @@ import typing as typ
 from ..utilities import int_list
 
 
-def solve(logger):
+async def solve(logger):
     logger.debug(prompt)
     limit = 1000
     longest_recurring = 2
     recurring_length = 1
     for number in range(2, limit):
         q, new_len = repeats(1, number)
-        print(f'1 / {number} : {new_len} : {q}')
+        logger.debug(f'1 / {number} : {new_len} : {q}')
         if new_len > recurring_length:
-            print(f'1 / {number} : {new_len} : {q}')
+            logger.debug(f'1 / {number} : {new_len} : {q}')
             if new_len > recurring_length:
                 recurring_length = new_len
                 longest_recurring = number
 
-    print(f'1 / {longest_recurring} : {recurring_length}')
+    logger.debug(f'1 / {longest_recurring} : {recurring_length}')
     return longest_recurring
 
 
@@ -79,7 +79,7 @@ def find_pattern(seq: typ.List[int], min_len: int=1) -> int:
         repeating_group = [int(x) for x in match.group('repeat')]
         for rotation in range(1, len(repeating_group) + 1):
             rotated_group = rotate(repeating_group, rotation)
-            # print(rotated_group)
+            # logger.debug(rotated_group)
             if rotated_group == repeating_group:
                 return repeating_group[:rotation]
         else:
