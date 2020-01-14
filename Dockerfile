@@ -1,8 +1,8 @@
+ARG USER
+
 FROM python:3.8
 
-ARG USER=docker
-
-ENV REQUESTS_CA_BUNDLE=/etc/certs/CPAROOT-CA.pem
+ARG USER
 
 # Create a non-root user
 RUN groupadd ${USER} --gid 1000 \

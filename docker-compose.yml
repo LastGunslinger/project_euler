@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  project_euler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER: docker
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+        consistency: consistent
+      - type: bind
+        source: ${HOME}/.ssh
+        target: /home/node/.ssh
+    environment:
+      REQUESTS_CA_BUNDLE: /etc/certs/CPAROOT-CA.pem
+    tty: true
+    working_dir: /workspace
