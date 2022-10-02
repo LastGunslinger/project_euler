@@ -1,44 +1,56 @@
 {
 	// See https://go.microsoft.com/fwlink/?LinkId=733558
 	// for the documentation about the tasks.json format
-	"version": "0.1.0",
-	"isShellCommand":true,
-	"showOutput": "always",
+	"version": "2.0.0",
 	"echoCommand": true,
-	"suppressTaskName": true,
 	"windows": {
 		"command": "cmd",
-		"args": ["-c"]
+		"args": [
+			"-c"
+		]
 	},
 	"osx": {
 		"command": "bash",
-		"args": ["-c"]
+		"args": [
+			"-c"
+		]
 	},
-	
 	"tasks": [
 		{
-			"taskName": "Run Main",
-			"args": ["source ~/.bash_profile && workon ${workspaceRootFolderName} && python ${file}"],
+			"label": "Run Main",
+			"type": "shell",
+			"args": [
+				"source ~/.bash_profile && workon ${workspaceRootFolderName} && python ${file}"
+			],
 			"problemMatcher": []
 		},
 		{
-			"taskName": "Build",
-			"suppressTaskName": true,
-			"args": ["source ~/.bash_profile && workon ${workspaceRootFolderName} && python build.py"],
+			"label": "Build",
+			"type": "shell",
+			"args": [
+				"source ~/.bash_profile && workon ${workspaceRootFolderName} && python build.py"
+			],
 			"problemMatcher": []
 		},
 		{
-			"taskName": "Deploy",
-			"suppressTaskName": true,
-			"args": ["source ~/.bash_profile && workon ${workspaceRootFolderName} && python deploy.py"],
+			"label": "Deploy",
+			"type": "shell",
+			"args": [
+				"source ~/.bash_profile && workon ${workspaceRootFolderName} && python deploy.py"
+			],
 			"problemMatcher": []
 		},
 		{
-			"taskName": "Test",
-			"isTestCommand": true,
-			"suppressTaskName": true,
-			"args": ["poetry run pytest --mypy --flake8 -s -vvv ${file}"],
-			"problemMatcher": []
+			"label": "Test",
+			"type": "shell",
+			"args": [
+				"poetry run pytest --mypy --flake8 -s -vvv ${file}"
+			],
+			"problemMatcher": [],
+			"group": {
+				"_id": "test",
+				"isDefault": false
+			}
 		}
 	]
 }
